@@ -35,5 +35,3 @@ robocopy "%git_zone_src_dir%" "%zone_src_dir%" %map_name%.csv %map_name%_load.cs
 robocopy "%git_zone_dir%" "%zone_dir%" %map_name%.ff %map_name%_load.ff
 
 CALL "%tools_dir%\cod4compiletools_runmap.bat" "%game_dir%\" %map_name% 1 %options%
-
-pause
