@@ -10,7 +10,7 @@ set zone_src_dir=%game_dir%\zone_source
 set zone_dir=%game_dir%\zone\english
 set git_zone_src_dir=%~dp0zone_source\english\assetinfo
 set git_zone_dir=%~dp0zone\english
-set options="+set fs_game "mods/deathrun_dev" +set g_gametype deathrun +set gametype deathrun +set dr_freerun_time 9999"
+set options="+set developer 1 +set developer_script 1 +set fs_game "mods/deathrun_dev" +set g_gametype deathrun +set gametype deathrun +set dr_freerun_time 9999"
 
 IF EXIST "%map_dir%%map_name%.map" del "%map_dir%%map_name%.map"
 IF EXIST "%map_dir%%map_name%.grid" del "%map_dir%%map_name%.grid"
