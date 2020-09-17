@@ -10,23 +10,23 @@ set git_zone_dir=%~dp0zone\english
 
 IF NOT EXIST %git_zone_src_dir%\%map_name%.csv (
  echo work
- echo "ignore,code_post_gfx_mp"> %git_zone_src_dir%\%map_name%.csv
- echo "ignore,common_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "ignore,localized_code_post_gfx_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "ignore,localized_common_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "col_map_mp,maps/mp/%map_name%.d3dbsp">> %git_zone_src_dir%\%map_name%.csv
- echo "rawfile,maps/mp/%map_name%.gsc">> %git_zone_src_dir%\%map_name%.csv
- echo "impactfx,%map_name%">> %git_zone_src_dir%\%map_name%.csv
- echo "sound,common,%map_name%,!all_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "sound,generic,%map_name%,!all_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "sound,voiceovers,%map_name%,!all_mp">> %git_zone_src_dir%\%map_name%.csv
- echo "sound,multiplayer,%map_name%,!all_mp">> %git_zone_src_dir%\%map_name%.csv
+ echo ignore,code_post_gfx_mp> %git_zone_src_dir%\%map_name%.csv
+ echo ignore,common_mp>> %git_zone_src_dir%\%map_name%.csv
+ echo ignore,localized_code_post_gfx_mp>> %git_zone_src_dir%\%map_name%.csv
+ echo ignore,localized_common_mp>> %git_zone_src_dir%\%map_name%.csv
+ echo col_map_mp,maps/mp/%map_name%.d3dbsp>> %git_zone_src_dir%\%map_name%.csv
+ echo rawfile,maps/mp/%map_name%.gsc>> %git_zone_src_dir%\%map_name%.csv
+ echo impactfx,%map_name%>> %git_zone_src_dir%\%map_name%.csv
+ echo sound,common,%map_name%,!all_mp>> %git_zone_src_dir%\%map_name%.csv
+ echo sound,generic,%map_name%,!all_mp>> %git_zone_src_dir%\%map_name%.csv
+ echo sound,voiceovers,%map_name%,!all_mp">> %git_zone_src_dir%\%map_name%.csv
+ echo sound,multiplayer,%map_name%,!all_mp>> %git_zone_src_dir%\%map_name%.csv
 
- echo "ignore,code_post_gfx_mp"> %git_zone_src_dir%\%map_name%_load.csv
- echo "ignore,common_mp">> %git_zone_src_dir%\%map_name%_load.csv
- echo "ignore,localized_code_post_gfx_mp">> %git_zone_src_dir%\%map_name%_load.csv
- echo "ignore,localized_common_mp">> %git_zone_src_dir%\%map_name%_load.csv
- echo "ui_map,maps/%map_name%">> %git_zone_src_dir%\%map_name%_load.csv
+ echo ignore,code_post_gfx_mp> %git_zone_src_dir%\%map_name%_load.csv
+ echo ignore,common_mp>> %git_zone_src_dir%\%map_name%_load.csv
+ echo ignore,localized_code_post_gfx_mp>> %git_zone_src_dir%\%map_name%_load.csv
+ echo ignore,localized_common_mp>> %git_zone_src_dir%\%map_name%_load.csv
+ echo ui_map,maps/%map_name%>> %git_zone_src_dir%\%map_name%_load.csv
 )
 
 IF EXIST "%zone_src_dir%\%map_name%.csv" del "%zone_src_dir%\%map_name%.csv"
