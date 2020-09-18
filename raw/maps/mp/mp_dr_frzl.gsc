@@ -22,11 +22,11 @@ startPlatform() {
 	while(1) {
 		startPlatform moveX(250, 2, 1, 1);
 
-		wait(2);
+		wait(2.5);
 
 		startPlatform moveZ(-750, 2, 1, 1);
 
-		wait(2);
+		wait(2.5);
 
 		startPlatform moveX(-250, 2, 1, 1);
 
@@ -34,11 +34,11 @@ startPlatform() {
 
 		startPlatform moveX(250, 2, 1, 1);		
 
-		wait(2);
+		wait(2.5);
 
 		startPlatform moveZ(750, 2, 1, 1);	
 
-		wait(2);
+		wait(2.5);
 
 		startPlatform moveX(-250, 2, 1, 1);
 
