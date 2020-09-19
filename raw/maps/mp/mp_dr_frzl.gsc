@@ -8,17 +8,42 @@ main() {
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
+	self.trapCount = 3;
+	level.trapTriggers = [];
 	self.activatedTraps = [];
 
 	thread startPlatform();
-	thread trapOne();
-	thread trapTwo();
-	thread TrapThree();
+
+	for (id = 0; id < self.trapCount; id++) {
+		thread trapData(id);
+	}
 }
 
 trapAnim(target) {
 	trapButton = getEnt(target, "targetname");
 	trapButton moveZ(-5, 0.5);
+}
+
+spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
+	if (stopOnActivate) {
+		while (!self.activatedTraps[trapId]) {
+			spinner rotateYaw(360, time);
+			wait 0.7;
+		}
+
+		if (removeCollisionOnActivate)
+			spinner notsolid();
+	} else {
+		collisionRemoved = false;
+
+		while (true) {
+			if (removeCollisionOnActivate && self.activatedTraps[trapId] && !collisionRemoved) {
+				spinner notsolid();
+			}
+			spinner rotateYaw(360, time);
+			wait 0.7;
+		}
+	}
 }
 
 startPlatform() {
@@ -56,61 +81,44 @@ startPlatform() {
 	}
 }
 
-trapOne() {
-	self.activatedTraps[0] = false;
-	trapTrigger = getEnt("trap_1_trigger", "targetname");
-	trapRandom = randomIntRange(0, 1);
-	trapFloor = getEnt("trap_1_" + trapRandom, "targetname");
-	trapTrigger waittill("trigger", player);
+trapData(id) {
+	self.activatedTraps[id] = false;
+	level.trapTriggers[id] = getEnt("trap_" + id + "_trigger", "targetname");
 
-	self.activatedTraps[0] = true;
-
-	trapFloor delete();
-	trapTrigger delete();
-	trapAnim("trap_1_button");
-}
-
-trapTwo() {
-	self.activatedTraps[1] = false;
-	trapTrigger = getEnt("trap_2_trigger", "targetname");
-	trapRandom = randomIntRange(0, 1);
-	trapLadder = getEnt("trap_2_" + trapRandom, "targetname");
-	trapTrigger waittill("trigger", player);
-
-	self.activatedTraps[1] = true;
-
-	trapLadder delete();
-	trapTrigger delete();
-	trapAnim("trap_2_button");
-}
-
-trapThree() {
-	self.activatedTraps[2] = false;
-	trapTrigger = getEnt("trap_3_trigger", "targetname");
-	trapSpinnerOne = getEnt("trap_3_spinner_0", "targetname");
-	trapSpinnerTwo = getEnt("trap_3_spinner_1", "targetname");
-	trapWire = getEnt("trap_3_wire", "targetname");
-	trapWire hide();
-	thread trapThreeSpinner(trapSpinnerOne);
-	thread trapThreeSpinner(trapSpinnerTwo);
-	trapTrigger waittill("trigger", player);
-
-	self.activatedTraps[2] = true;
-
-	trapSpinnerOne delete();
-	trapSpinnerTwo delete();
-	trapWire show();
-	trapTrigger delete();
-	trapAnim("trap_3_button");
-}
-
-trapThreeSpinner(trapSpinner) {
-	while (true) {
-		if (!self.activatedTraps[2]) {
-			trapSpinner rotateYaw(360, 0.7);
-			wait 0.7;
-		} else {
+	switch(id) { //before activation functionality
+		case 2:
+			trapWire = getEnt("trap_2_wire", "targetname");
+			trapWire hide();
+			for (i = 0; i < 2; i++) {
+				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), false, 0.7, true);
+			}
 			break;
-		}
+		default:
+			break;
 	}
+
+	level.trapTriggers[id] waittill("trigger", player);
+	self.activatedTraps[id] = true;
+
+	switch(id) { //after activation functionality
+		case 0: //Floor removal trap
+			trapRandom = randomIntRange(0, 1);
+			trapFloor = getEnt("trap_0_" + trapRandom, "targetname");
+			trapFloor delete();
+			break;
+		case 1: //Ladder removal trap
+			trapRandom = randomIntRange(0, 1);
+			trapLadder = getEnt("trap_1_" + trapRandom, "targetname");
+			trapLadder delete();
+			break;
+		case 2: //Remove spinner collision trap
+			trapWire = getEnt("trap_2_wire", "targetname");
+			trapWire show();			
+			break;
+		default:
+			break;
+	}
+
+	level.trapTriggers[id] delete();
+	trapAnim("trap_" + id + "_button");
 }
