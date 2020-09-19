@@ -4218,7 +4218,7 @@ iwmap 4
 }
 // entity 11
 {
-"targetname" "trap_1_0"
+"targetname" "trap_0_0"
 "classname" "script_brushmodel"
 // brush 0
 {
@@ -4241,7 +4241,7 @@ iwmap 4
 }
 // entity 12
 {
-"targetname" "trap_1_1"
+"targetname" "trap_0_1"
 "classname" "script_brushmodel"
 // brush 0
 {
@@ -4255,7 +4255,7 @@ iwmap 4
 }
 // entity 13
 {
-"targetname" "trap_1_button"
+"targetname" "trap_0_button"
 "classname" "script_brushmodel"
 // brush 0
  {
@@ -4419,7 +4419,7 @@ iwmap 4
 }
 // entity 14
 {
-"targetname" "trap_2_0"
+"targetname" "trap_1_0"
 "classname" "script_brushmodel"
 // brush 0
 {
@@ -4442,7 +4442,7 @@ iwmap 4
 }
 // entity 15
 {
-"targetname" "trap_2_1"
+"targetname" "trap_1_1"
 "classname" "script_brushmodel"
 // brush 0
 {
@@ -4465,7 +4465,7 @@ iwmap 4
 }
 // entity 16
 {
-"targetname" "trap_2_button"
+"targetname" "trap_1_button"
 "classname" "script_brushmodel"
 // brush 0
  {
@@ -4629,7 +4629,7 @@ iwmap 4
 }
 // entity 17
 {
-"targetname" "trap_1_trigger"
+"targetname" "trap_0_trigger"
 "hintstring" "Remove Floor"
 "classname" "trigger_use_touch"
 // brush 0
@@ -4644,22 +4644,22 @@ iwmap 4
 }
 // entity 18
 {
-"hintstring" "Flip spinners"
-"targetname" "trap_2_trigger"
+"hintstring" "Remove ladders"
+"targetname" "trap_1_trigger"
 "classname" "trigger_use_touch"
 // brush 0
 {
- ( -134.5 336.5 -749 ) ( -150 336.5 -749 ) ( -150 321 -749 ) trigger 64 64 -74.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -152.5 321 -719 ) ( -152.5 336.5 -719 ) ( -137 336.5 -719 ) trigger 64 64 -74.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -152.5 321 -719 ) ( -137 321 -719 ) ( -137 321 -727 ) trigger 64 64 -74.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -124.5 321 -719 ) ( -124.5 336.5 -719 ) ( -124.5 336.5 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -137.5 346.5 -719 ) ( -153 346.5 -719 ) ( -153 346.5 -727 ) trigger 64 64 -74.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -152.5 336.5 -719 ) ( -152.5 321 -719 ) ( -152.5 321 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -60 336.5 -749 ) ( -75.5 336.5 -749 ) ( -75.5 321 -749 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -78 321 -719 ) ( -78 336.5 -719 ) ( -62.5 336.5 -719 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -78 321 -719 ) ( -62.5 321 -719 ) ( -62.5 321 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -50 321 -719 ) ( -50 336.5 -719 ) ( -50 336.5 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -63 346.5 -719 ) ( -78.5 346.5 -719 ) ( -78.5 346.5 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -78 336.5 -719 ) ( -78 321 -719 ) ( -78 321 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 19
 {
-"targetname" "trap_3_wire"
+"targetname" "trap_2_wire"
 "classname" "script_brushmodel"
 // brush 0
 {
@@ -4674,7 +4674,7 @@ iwmap 4
 // entity 20
 {
 "hintstring" "Flip spinners"
-"targetname" "trap_3_trigger"
+"targetname" "trap_2_trigger"
 "classname" "trigger_use_touch"
 // brush 0
 {
@@ -4688,7 +4688,7 @@ iwmap 4
 }
 // entity 21
 {
-"targetname" "trap_3_button"
+"targetname" "trap_2_button"
 "classname" "script_brushmodel"
 // brush 0
  {
@@ -4852,7 +4852,7 @@ iwmap 4
 }
 // entity 22
 {
-"targetname" "trap_3_spinner_0"
+"targetname" "trap_2_spinner_0"
 "classname" "script_brushmodel"
 // brush 0
  {
@@ -4882,7 +4882,6 @@ iwmap 4
  {
   curve
   {
-  toolFlags;
    ch_factory_corrugatedsiding4
    lightmap_gray
    9 3 16 8
@@ -4961,13 +4960,12 @@ iwmap 4
 }
 // entity 23
 {
-"targetname" "trap_3_spinner_1"
+"targetname" "trap_2_spinner_1"
 "classname" "script_brushmodel"
 // brush 0
  {
   curve
   {
-  toolFlags;
    ch_factory_corrugatedsiding4
    lightmap_gray
    3 3 16 8
