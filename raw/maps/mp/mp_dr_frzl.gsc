@@ -28,7 +28,7 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 	if (stopOnActivate) {
 		while (!self.activatedTraps[trapId]) {
 			spinner rotateYaw(360, time);
-			wait 0.7;
+			wait(time);
 		}
 
 		if (removeCollisionOnActivate)
@@ -41,7 +41,7 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 				spinner notsolid();
 			}
 			spinner rotateYaw(360, time);
-			wait 0.7;
+			wait(time);
 		}
 	}
 }
