@@ -8,7 +8,7 @@ main() {
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	self.trapCount = 3;
+	self.trapCount = 4;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
 
@@ -114,6 +114,15 @@ trapData(id) {
 		case 2: //Remove spinner collision trap
 			trapWire = getEnt("trap_2_wire", "targetname");
 			trapWire show();			
+			break;
+		case 3: //Maze crusher
+			yOffset = 304;
+			for (i = 0; i < 2; i++) {
+				door = getEnt("trap_3_door_" + i, "targetname");
+				door moveY(yoffset, 2);
+				yOffset *= -1;
+			}
+			wait(2);
 			break;
 		default:
 			break;
