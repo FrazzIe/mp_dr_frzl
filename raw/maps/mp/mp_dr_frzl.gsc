@@ -96,6 +96,7 @@ trapData(id) {
 			}
 			break;
 		case 3:
+			//attach hurt trigger to crusher trap
 			crusher = getEnt("trap_3_crusher", "targetname");
 			crusherTrigger = getEnt("trap_3_crusher_trigger", "targetname");
 			crusherTrigger enableLinkTo();
@@ -186,8 +187,14 @@ createPlatformGame() {
 	//add dummy platforms
 	for (row = 0; row < platformRows; row++) {
 		for (column = 0; column < platformColumns; column++) {
+			platformIndicatiorOn = getEnt("platform_game_" + row + "_" + column + "_on", "targetname");
+
 			if (realPlatforms[row] != column) {
 				thread addDummyPlatform(row, column);
+				platformIndicatiorOn hide();
+			} else {
+				platformIndicatiorOff = getEnt("platform_game_" + row + "_" + column + "_off", "targetname");
+				platformIndicatiorOff hide();
 			}
 		}
 	}
