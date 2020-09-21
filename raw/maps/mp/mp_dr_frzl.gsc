@@ -108,12 +108,12 @@ trapData(id) {
 
 	switch(id) { //after activation functionality
 		case 0: //Floor removal trap
-			trapRandom = randomIntRange(0, 1);
+			trapRandom = randomIntRange(0, 2);
 			trapFloor = getEnt("trap_0_" + trapRandom, "targetname");
 			trapFloor delete();
 			break;
 		case 1: //Ladder removal trap
-			trapRandom = randomIntRange(0, 1);
+			trapRandom = randomIntRange(0, 2);
 			trapLadder = getEnt("trap_1_" + trapRandom, "targetname");
 			trapLadder delete();
 			break;
