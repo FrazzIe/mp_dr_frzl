@@ -93,6 +93,12 @@ trapData(id) {
 				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), false, 0.7, true);
 			}
 			break;
+		case 3:
+			crusher = getEnt("trap_3_crusher", "targetname");
+			crusherTrigger = getEnt("trap_3_crusher_trigger", "targetname");
+			crusherTrigger enableLinkTo();
+			crusherTrigger linkTo(crusher);
+			break;
 		default:
 			break;
 	}
@@ -117,11 +123,42 @@ trapData(id) {
 			break;
 		case 3: //Maze crusher
 			yOffset = 304;
+
+			//open crusher doors
 			for (i = 0; i < 2; i++) {
-				door = getEnt("trap_3_door_" + i, "targetname");
-				door moveY(yoffset, 2);
+				door = getEnt("trap_3_h_door_" + i, "targetname");
+				door moveY(yOffset, 2);
 				yOffset *= -1;
-			}
+			} //horizontal roof doors
+
+			//close maze doors
+			door = getEnt("trap_3_v_door_0", "targetname");
+			door moveZ(98, 2); //vertical maze doors
+			wait(2);
+
+			crusher = getEnt("trap_3_crusher", "targetname");
+			crusher moveZ(-253, 5); //crusher
+			wait(5);
+
+			wait(2); //make sure everyone in the maze is dead
+
+			//move crusher back up
+			crusher = getEnt("trap_3_crusher", "targetname");
+			crusher moveZ(253, 5); //crusher
+			wait(5);
+
+			yOffset = -304;
+
+			//open maze doors
+			door = getEnt("trap_3_v_door_0", "targetname");
+			door moveZ(-98, 2); //vertical maze doors
+
+			//close crusher doors
+			for (i = 0; i < 2; i++) {
+				door = getEnt("trap_3_h_door_" + i, "targetname");
+				door moveY(yOffset, 2);
+				yOffset *= -1;
+			} //horizontal roof doors
 			wait(2);
 			break;
 		default:
