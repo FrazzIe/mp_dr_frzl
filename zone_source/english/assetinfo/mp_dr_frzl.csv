@@ -8,3 +8,5 @@ impactfx,mp_dr_frzl
 sound,common,mp_dr_frzl,!all_mp
 sound,generic,mp_dr_frzl,!all_mp
 sound,multiplayer,mp_dr_frzl,!all_mp
+image,frzl_green
+image,frzl_red
