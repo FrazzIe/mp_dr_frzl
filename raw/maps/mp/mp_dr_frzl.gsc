@@ -17,6 +17,8 @@ main() {
 	for (id = 0; id < self.trapCount; id++) {
 		thread trapData(id);
 	}
+
+	createPlatformGame();
 }
 
 trapAnim(target) {
@@ -167,4 +169,35 @@ trapData(id) {
 
 	level.trapTriggers[id] delete();
 	trapAnim("trap_" + id + "_button");
+}
+
+createPlatformGame() {
+	platformColumns = 3;
+	platformRows = 5;
+	realPlatforms = [];
+
+	//generate stable platforms
+	realPlatforms[0] = randomIntRange(0, platformColumns);
+
+	for (row = 1; row < platformRows; row++) {
+		realPlatforms[row] = randomIntRange(0, platformColumns);
+	}
+
+	//add dummy platforms
+	for (row = 0; row < platformRows; row++) {
+		for (column = 0; column < platformColumns; column++) {
+			if (realPlatforms[row] != column) {
+				thread addDummyPlatform(row, column);
+			}
+		}
+	}
+}
+
+addDummyPlatform(row, column) {
+	platform = getEnt("platform_game_" + row + "_" + column, "targetname");
+	platformTrigger = getEnt("platform_game_" + row + "_" + column + "_trigger", "targetname");
+	platformTrigger waittill("trigger", player);
+	platform moveZ(-75, 0.3);
+	wait(0.3);
+	platform delete();
 }
