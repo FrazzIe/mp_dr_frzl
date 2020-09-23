@@ -63,7 +63,7 @@ SET assetType=%~2
 SET colorMap=%~3
 
 cd "%bin_dir%"
-echo %assetName%, %assetType%, %colorMap%
+
 IF NOT assetName == 0 (
  IF NOT assetType == 0 (
   IF NOT colorMap == 0 (
