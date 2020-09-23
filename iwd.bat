@@ -22,18 +22,18 @@ FOR /F "tokens=1-2* delims=," %%A IN (%git_zone_src%\%map_name%.csv) DO (
   SET assetType=0
   SET colorMap=0
 
-  FOR /F tokens^=1-8delims^=^<^"^= %%A IN (%git_source_data%\%%~B.gdt) DO (
-   IF NOT "%%~B" == "" (
-	   IF NOT "%%~D" == "" (
-     SET value=%%~D
+  FOR /F tokens^=2-4delims^=^<^"^= %%A IN (%git_source_data%\%%~B.gdt) DO (
+   IF NOT "%%~A" == "" (
+	   IF NOT "%%~C" == "" (
+     SET value=%%~C
 	    SET extension="!value:.gdf=!"
 
-	    IF NOT "%%~D" == !extension! (
-      SET assetType="!extension!"
+	    IF NOT "%%~C" == !extension! (
+      SET assetType=!extension!
 	    )
 
-	    IF "%%~B" == "colorMap" (
-      SET colorMap="%%~D"
+	    IF "%%~A" == "colorMap" (
+      SET colorMap="%%~C"
 	    )
 	   )
    )
