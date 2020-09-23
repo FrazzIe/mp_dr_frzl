@@ -19,6 +19,7 @@ main() {
 	}
 
 	createPlatformGame();
+	createPasswordGame();
 }
 
 trapAnim(target) {
@@ -207,4 +208,99 @@ addDummyPlatform(row, column) {
 	platform moveZ(-75, 0.3);
 	wait(0.3);
 	platform delete();
+}
+
+createPasswordGame() {
+	//0 - Blue (Background / Unselected)
+	//1 - Red
+	//2 - Green
+
+	self.passwordGamePassword = [];
+	self.passwordGameInput = [];
+	self.passwordGameColumns = 6;
+	self.passwordGameRows = 2;
+	self.passwordGameColours = 3;
+	self.passwordGameButtons = 3;
+	self.passwordGameEnabled = true;
+
+	//hide everything but blue
+	passwordGameReset(0, self.passwordGameRows, 0);
+
+	//generate password
+	for (column = 0; column < self.passwordGameColumns; column++) {
+		self.passwordGamePassword[column] = randomIntRange(1, self.passwordGameColours);
+		passwordBrush = getEnt("password_game_1_" + column + "_0", "targetname");
+		passwordBrush hide(); //hide background
+		passwordBrush = getEnt("password_game_1_" + column + "_" + self.passwordGamePassword[column], "targetname");
+		passwordBrush show(); //show password character (red/blue)
+	}
+
+	for (button = 0; button < self.passwordGameButtons; button++) {
+		thread passwordGameListener(button);
+	}
+}
+
+passwordGameMatch(passwordA, passwordB) {
+	if (passwordA.size != passwordB.size)
+		return false;
+
+	for (i = 0; i < passwordA.size; i++) {
+		if (passwordA[i] != passwordB[i])
+			return false;
+	}
+
+	return true;
+}
+
+passwordGameListener(id) {
+	trigger = getEnt("password_game_trigger_" + id, "targetname");
+
+	while(self.passwordGameEnabled) {		
+		trigger waittill("trigger", player);
+
+		if (self.passwordGameEnabled) {
+			switch(id) {
+				case 0:
+					if (self.passwordGamePassword.size == self.passwordGameInput.size && passwordGameMatch(self.passwordGamePassword, self.passwordGameInput)) { //check if password matches
+						self.passwordGameEnabled = false;
+						passwordGameReset(0, self.passwordGameRows, 2); //set all blocks to green to indicate it was a success
+						
+						iPrintLnBold("^1" + player.name + " ^7has unlocked the checkpoint!");
+
+						door = getEnt("password_game_door", "targetname");
+						door moveZ(98, 5); //open the door
+					} else {
+						self.passwordGameInput = [];
+						passwordGameReset(0, self.passwordGameRows - 1, 0); //reset user input
+					}
+					break;
+				case 1:
+				case 2:
+					if (self.passwordGamePassword.size != self.passwordGameInput.size) {
+						passwordBrush = getEnt("password_game_0_" + self.passwordGameInput.size + "_0", "targetname");
+						passwordBrush hide(); //hide background
+						passwordBrush = getEnt("password_game_0_" + self.passwordGameInput.size + "_" + id, "targetname");
+						passwordBrush show(); //show password character (red/blue)
+						self.passwordGameInput[self.passwordGameInput.size] = id;
+					}
+					break;
+			}
+		}
+	}
+
+	trigger delete();
+}
+
+passwordGameReset(rowIdx, rowCount, showColourIdx) {
+	for (row = rowIdx; row < rowCount; row++) {
+		for (column = 0; column < self.passwordGameColumns; column++) {
+			for (colour = 0; colour < self.passwordGameColours; colour++) {
+				passwordBrush = getEnt("password_game_" + row + "_" + column + "_" + colour, "targetname");
+				if (showColourIdx == colour) 
+					passwordBrush show();
+				else
+					passwordBrush hide();
+			}
+		}
+	}
 }
