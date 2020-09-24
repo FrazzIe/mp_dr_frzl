@@ -27,11 +27,14 @@ trapAnim(target) {
 	trapButton moveZ(-5, 0.5);
 }
 
-spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
+spinTrap(trapId, spinner, time, interval, stopOnActivate, removeCollisionOnActivate) {
 	if (stopOnActivate) {
 		while (!self.activatedTraps[trapId]) {
 			spinner rotateYaw(360, time);
 			wait(time);
+
+			if (interval)
+				wait(interval);
 		}
 
 		if (removeCollisionOnActivate)
@@ -45,11 +48,14 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 			}
 			spinner rotateYaw(360, time);
 			wait(time);
+
+			if (interval)
+				wait(interval);
 		}
 	}
 }
 
-moverTrapAxis(mover, axis, amount, time) {
+moverTrapAxis(mover, axis, amount, time, interval) {
 	switch(axis) {
 		case "X":
 		case "x":
@@ -72,12 +78,15 @@ moverTrapAxis(mover, axis, amount, time) {
 			mover moveZ(0 - amount, time);
 			wait(time);
 	}
+
+	if (interval)
+		wait(interval);
 }	
 
-moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnActivate) {
+moverTrap(trapId, mover, axis, amount, time, interval, stopOnActivate, removeCollisionOnActivate) {
 	if (stopOnActivate) {
 		while (!self.activatedTraps[trapId]) {
-			moverTrapAxis(mover, axis, amount, time);
+			moverTrapAxis(mover, axis, amount, time, interval);
 		}
 
 		if (removeCollisionOnActivate)
@@ -90,7 +99,7 @@ moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnAc
 				mover notSolid();
 			}
 
-			moverTrapAxis(mover, axis, amount, time);
+			moverTrapAxis(mover, axis, amount, time, interval);
 		}
 	}	
 }
@@ -140,7 +149,7 @@ trapData(id) {
 			trapWire = getEnt("trap_2_wire", "targetname");
 			trapWire hide();
 			for (i = 0; i < 2; i++) {
-				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), false, 0.7, true);
+				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), 0.7, false, false, true);
 			}
 			break;
 		case 3:
