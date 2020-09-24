@@ -263,6 +263,10 @@ trapData(id) {
 			wait(2);
 			break;
 		case 4: //Remove 2 Square platforms
+			for (row = 0; row < 2; row++) {
+				square = getEnt("trap_4_platform_" + row + "_" + randomIntRange(0, 2), "targetname");
+				square notSolid();
+			}
 			break;
 		case 5: //Small platforms moving up and down
 			break;
