@@ -93,6 +93,27 @@ moverTrapAxis(mover, axis, amount, time, interval) {
 			wait(time);
 			mover moveZ(0 - amount, time);
 			wait(time);
+		case "ROLL":
+		case "roll":
+			mover rotateRoll(amount, time);
+			wait(time);
+			mover rotateRoll(0 - amount, time);
+			wait(time);
+			break;
+		case "YAW":
+		case "yaw":
+			mover rotateYaw(amount, time);
+			wait(time);
+			mover rotateYaw(0 - amount, time);
+			wait(time);
+			break;
+		case "PITCH":
+		case "pitch":
+			mover rotatePitch(amount, time);
+			wait(time);
+			mover rotatePitch(0 - amount, time);
+			wait(time);
+			break;
 	}
 
 	if (interval)
