@@ -202,6 +202,14 @@ trapData(id) {
 			pillar notSolid();
 			break;
 		case 6: //Knock off moving platform
+			//Make platform move
+			thread moverTrap(id, getEnt("trap_6_platform", "targetname"), "x", 357, 2, false, false, false);
+			//attach hurt trigger to knocker trap
+			knocker = getEnt("trap_6_knocker", "targetname");
+			knockerTrigger = getEnt("trap_6_knocker_trigger", "targetname");
+			knockerTrigger enableLinkTo();
+			knockerTrigger linkTo(knocker);
+			knocker notSolid(); //remove knocker collision so it doesn't get jammed
 			break;
 		default:
 			break;
@@ -274,6 +282,17 @@ trapData(id) {
 		case 5: //Small pillars moving up and down
 			break;
 		case 6: //Knock off moving platform
+			knocker = getEnt("trap_6_knocker", "targetname");
+			knocker moveZ(-114.5, 0.5); //move down
+			wait(0.6);
+			knocker moveX(219.5, 0.5); //move forward
+			wait(0.6);
+			knocker moveX(-219.5 + -218.5, 0.5); //move back
+			wait(0.6);
+			knocker moveX(218.5, 0.5); //move forward to middle
+			wait(0.6);
+			knocker moveZ(114.5, 0.5); //move up
+			wait(0.6);
 			break;
 		case 7: //Rotate bounce
 			thread spinTrap(id, getEnt("trap_7_bounce", "targetname"), "yaw", 2, 2, false, false);
