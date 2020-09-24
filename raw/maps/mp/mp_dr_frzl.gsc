@@ -276,6 +276,7 @@ trapData(id) {
 		case 6: //Knock off moving platform
 			break;
 		case 7: //Rotate bounce
+			thread spinTrap(id, getEnt("trap_7_bounce", "targetname"), "yaw", 2, 2, false, false);
 			break;
 		default:
 			break;
