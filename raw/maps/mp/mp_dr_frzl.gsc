@@ -35,13 +35,13 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 		}
 
 		if (removeCollisionOnActivate)
-			spinner notsolid();
+			spinner notSolid();
 	} else {
 		collisionRemoved = false;
 
 		while (true) {
 			if (removeCollisionOnActivate && self.activatedTraps[trapId] && !collisionRemoved) {
-				spinner notsolid();
+				spinner notSolid();
 			}
 			spinner rotateYaw(360, time);
 			wait(time);
@@ -81,13 +81,13 @@ moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnAc
 		}
 
 		if (removeCollisionOnActivate)
-			mover notsolid();
+			mover notSolid();
 	} else {
 		collisionRemoved = false;
 
 		while (true) {
 			if (removeCollisionOnActivate && self.activatedTraps[trapId] && !collisionRemoved) {
-				mover notsolid();
+				mover notSolid();
 			}
 
 			moverTrapAxis(mover, axis, amount)
