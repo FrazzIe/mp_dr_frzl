@@ -49,27 +49,27 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 	}
 }
 
-moverTrapAxis(mover, axis, amount) {
+moverTrapAxis(mover, axis, amount, time) {
 	switch(axis) {
 		case "X":
 		case "x":
 			mover moveX(amount, time);
 			wait(time);
-			mover moveX(-amount, time);
+			mover moveX(0 - amount, time);
 			wait(time);
 			break;
 		case "Y":
 		case "y":
 			mover moveY(amount, time);
 			wait(time);
-			mover moveY(-amount, time);
+			mover moveY(0 - amount, time);
 			wait(time);
 			break;
 		case "Z":
 		case "z":
 			mover moveZ(amount, time);
 			wait(time);
-			mover moveZ(-amount, time);
+			mover moveZ(0 - amount, time);
 			wait(time);
 	}
 }	
@@ -77,7 +77,7 @@ moverTrapAxis(mover, axis, amount) {
 moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnActivate) {
 	if (stopOnActivate) {
 		while (!self.activatedTraps[trapId]) {
-			moverTrapAxis(mover, axis, amount)
+			moverTrapAxis(mover, axis, amount, time);
 		}
 
 		if (removeCollisionOnActivate)
@@ -90,7 +90,7 @@ moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnAc
 				mover notSolid();
 			}
 
-			moverTrapAxis(mover, axis, amount)
+			moverTrapAxis(mover, axis, amount, time);
 		}
 	}	
 }
