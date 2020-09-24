@@ -27,14 +27,33 @@ trapAnim(target) {
 	trapButton moveZ(-5, 0.5);
 }
 
-spinTrap(trapId, spinner, time, interval, stopOnActivate, removeCollisionOnActivate) {
-	if (stopOnActivate) {
-		while (!self.activatedTraps[trapId]) {
+spinTrapAxis(spinner, axis, time, interval) {
+	switch(axis) {
+		case "ROLL":
+		case "roll":
+			spinner rotateRoll(360, time);
+			wait(time);
+			break;
+		case "YAW":
+		case "yaw":
 			spinner rotateYaw(360, time);
 			wait(time);
+			break;
+		case "PITCH":
+		case "pitch":
+			spinner rotatePitch(360, time);
+			wait(time);
+			break;
+	}
 
-			if (interval)
-				wait(interval);
+	if (interval)
+		wait(interval);
+}
+
+spinTrap(trapId, spinner, axis, time, interval, stopOnActivate, removeCollisionOnActivate) {
+	if (stopOnActivate) {
+		while (!self.activatedTraps[trapId]) {
+			spinTrapAxis(spinner, axis, time, interval);
 		}
 
 		if (removeCollisionOnActivate)
@@ -46,11 +65,8 @@ spinTrap(trapId, spinner, time, interval, stopOnActivate, removeCollisionOnActiv
 			if (removeCollisionOnActivate && self.activatedTraps[trapId] && !collisionRemoved) {
 				spinner notSolid();
 			}
-			spinner rotateYaw(360, time);
-			wait(time);
 
-			if (interval)
-				wait(interval);
+			spinTrapAxis(spinner, axis, time, interval);
 		}
 	}
 }
@@ -149,7 +165,7 @@ trapData(id) {
 			trapWire = getEnt("trap_2_wire", "targetname");
 			trapWire hide();
 			for (i = 0; i < 2; i++) {
-				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), 0.7, false, false, true);
+				thread spinTrap(id, getEnt("trap_2_spinner_" + i, "targetname"), "yaw", 0.7, false, false, true);
 			}
 			break;
 		case 3:
