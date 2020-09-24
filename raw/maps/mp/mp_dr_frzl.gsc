@@ -196,7 +196,10 @@ trapData(id) {
 			crusherTrigger enableLinkTo();
 			crusherTrigger linkTo(crusher);
 			break;
-		case 5: //Small platforms moving up and down
+		case 5: //Small pillars moving up and down
+			//Remove collision from fake middle platform
+			pillar = getEnt("trap_5_pillar_fake", "targetname");
+			pillar notSolid();
 			break;
 		case 6: //Knock off moving platform
 			break;
@@ -268,7 +271,7 @@ trapData(id) {
 				square notSolid();
 			}
 			break;
-		case 5: //Small platforms moving up and down
+		case 5: //Small pillars moving up and down
 			break;
 		case 6: //Knock off moving platform
 			break;
