@@ -49,6 +49,52 @@ spinTrap(trapId, spinner, stopOnActivate, time, removeCollisionOnActivate) {
 	}
 }
 
+moverTrapAxis(mover, axis, amount) {
+	switch(axis) {
+		case "X":
+		case "x":
+			mover moveX(amount, time);
+			wait(time);
+			mover moveX(-amount, time);
+			wait(time);
+			break;
+		case "Y":
+		case "y":
+			mover moveY(amount, time);
+			wait(time);
+			mover moveY(-amount, time);
+			wait(time);
+			break;
+		case "Z":
+		case "z":
+			mover moveZ(amount, time);
+			wait(time);
+			mover moveZ(-amount, time);
+			wait(time);
+	}
+}	
+
+moverTrap(trapId, mover, axis, amount, stopOnActivate, time, removeCollisionOnActivate) {
+	if (stopOnActivate) {
+		while (!self.activatedTraps[trapId]) {
+			moverTrapAxis(mover, axis, amount)
+		}
+
+		if (removeCollisionOnActivate)
+			mover notsolid();
+	} else {
+		collisionRemoved = false;
+
+		while (true) {
+			if (removeCollisionOnActivate && self.activatedTraps[trapId] && !collisionRemoved) {
+				mover notsolid();
+			}
+
+			moverTrapAxis(mover, axis, amount)
+		}
+	}	
+}
+
 startPlatform() {
 	level waittill("round_started");
 	startPlatform = getEnt("start_platform", "targetname");
