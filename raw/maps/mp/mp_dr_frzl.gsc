@@ -220,7 +220,7 @@ trapData(id) {
 			break;
 		case 2: //Remove spinner collision trap
 			trapWire = getEnt("trap_2_wire", "targetname");
-			trapWire show();			
+			trapWire show();
 			break;
 		case 3: //Maze crusher
 			yOffset = 304;
