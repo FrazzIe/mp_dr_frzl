@@ -93,6 +93,7 @@ moverTrapAxis(mover, axis, amount, time, interval) {
 			wait(time);
 			mover moveZ(0 - amount, time);
 			wait(time);
+			break;
 		case "ROLL":
 		case "roll":
 			mover rotateRoll(amount, time);
