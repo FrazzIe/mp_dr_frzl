@@ -8,7 +8,7 @@ main() {
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	self.trapCount = 4;
+	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
 
@@ -135,7 +135,8 @@ trapData(id) {
 	level.trapTriggers[id] = getEnt("trap_" + id + "_trigger", "targetname");
 
 	switch(id) { //before activation functionality
-		case 2:
+		case 2: //Remove spinner collision trap
+		    //Make spinners spin
 			trapWire = getEnt("trap_2_wire", "targetname");
 			trapWire hide();
 			for (i = 0; i < 2; i++) {
@@ -148,6 +149,10 @@ trapData(id) {
 			crusherTrigger = getEnt("trap_3_crusher_trigger", "targetname");
 			crusherTrigger enableLinkTo();
 			crusherTrigger linkTo(crusher);
+			break;
+		case 5: //Small platforms moving up and down
+			break;
+		case 6: //Knock off moving platform
 			break;
 		default:
 			break;
@@ -210,6 +215,14 @@ trapData(id) {
 				yOffset *= -1;
 			} //horizontal roof doors
 			wait(2);
+			break;
+		case 4: //Remove 2 Square platforms
+			break;
+		case 5: //Small platforms moving up and down
+			break;
+		case 6: //Knock off moving platform
+			break;
+		case 7: //Rotate bounce
 			break;
 		default:
 			break;
