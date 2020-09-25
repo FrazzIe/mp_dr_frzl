@@ -280,7 +280,15 @@ trapData(id) {
 				square notSolid();
 			}
 			break;
-		case 5: //Small pillars moving up and down
+		case 5: //Small pillars, delete 2 rows
+			for (row = 0; row < 2; row++) {
+				pillars = getEnt("trap_5_pillar_" + randomIntRange(0, 3), "targetname");
+				while (!isDefined(pillars)) {
+					pillars = getEnt("trap_5_pillar_" + randomIntRange(0, 3), "targetname");
+					wait(0.1);
+				}
+				pillars delete();
+			}
 			break;
 		case 6: //Knock off moving platform
 			knocker = getEnt("trap_6_knocker", "targetname");
