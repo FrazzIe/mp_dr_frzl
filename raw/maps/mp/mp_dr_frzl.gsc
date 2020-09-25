@@ -11,11 +11,16 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
+	self.miscCount = 1;
 
 	thread startPlatform();
 
 	for (id = 0; id < self.trapCount; id++) {
 		thread trapData(id);
+	}
+
+	for (id = 0; id < self.miscCount; id++) {
+		thread miscData(id);
 	}
 
 	createPlatformGame();
@@ -25,6 +30,39 @@ main() {
 trapAnim(target) {
 	trapButton = getEnt(target, "targetname");
 	trapButton moveZ(-5, 0.5);
+}
+
+miscAnim(miscButton, axis, amount, time, resetPosition) {
+	waitTime = time;
+
+	if (waitTime < 1)
+		waitTime += 0.1;
+
+	switch(axis) {
+		case "X":
+		case "x":
+			miscButton moveX(amount, time);			
+			wait(waitTime);
+			if (resetPosition)
+				miscButton moveX(0 - amount, time);
+			break;
+		case "Y":
+		case "y":
+			miscButton moveY(amount, time);			
+			wait(waitTime);
+			if (resetPosition)
+				miscButton moveY(0 - amount, time);
+			break;
+		case "Z":
+		case "z":
+			miscButton moveZ(amount, time);			
+			wait(waitTime);
+			if (resetPosition)
+				miscButton moveZ(0 - amount, time);
+			break;
+		default:
+			break;
+	}
 }
 
 spinTrapAxis(spinner, axis, time, interval) {
@@ -312,6 +350,26 @@ trapData(id) {
 
 	level.trapTriggers[id] delete();
 	trapAnim("trap_" + id + "_button");
+}
+
+miscData(id) {
+	while (true) {
+		miscTrigger = getEnt("misc_" + id + "_trigger", "targetname");
+		miscTrigger waittill("trigger", player);
+
+		switch(id) {
+			case 0:
+				if (isDefined(player.pers["vip"]) && player.pers["vip"]) {
+					player suicide();
+					miscAnim(getEnt("misc_" + id + "_button", "targetname"), "y", 6, 0.5, true);
+				}
+				break;
+			default:
+				break;
+		}
+
+		wait(0.1);
+	}
 }
 
 createPlatformGame() {
