@@ -12564,20 +12564,6 @@ iwmap 4
 }
 // entity 134
 {
-"targetname" "password_game_door"
-"classname" "script_brushmodel"
-// brush 0
-{
- ( -2376.5 -86 -512 ) ( -2394 -86 -512 ) ( -2376.5 -86 -480 ) me_door_rollup1 107.5 -97.5 8.1667833 -66.5 180 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2482.5 304 -749 ) ( -2466.5 304 -749 ) ( -2482.5 336 -749 ) me_door_rollup1 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2470.5 -76 -512 ) ( -2466.5 -76 -512 ) ( -2466.5 -76 -480 ) me_door_rollup1 107.49664 -97.5 8.5767851 -66.5 -180 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2588.5 -74 -643.5 ) ( -2588.5 -89 -643.5 ) ( -2588.5 -89 -611.5 ) caulk 64 64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2604.5 -73 -651.5 ) ( -2610 -73 -651.5 ) ( -2604.5 -41 -651.5 ) caulk 64 64 -45 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2696 -251 -653 ) ( -2696 -251 -667 ) ( -2696 -219 -653 ) caulk 64 64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0 0 0
-}
-}
-// entity 135
-{
 "targetname" "trap_4_button"
 "classname" "script_brushmodel"
 // brush 0
@@ -12740,7 +12726,7 @@ iwmap 4
   }
  }
 }
-// entity 136
+// entity 135
 {
 "hintstring" "Press ^3&&1 ^7to ^1remove platforms"
 "targetname" "trap_4_trigger"
@@ -12755,7 +12741,7 @@ iwmap 4
  ( -2651 346.5 -719.5 ) ( -2651 321 -719.5 ) ( -2651 321 -749 ) trigger 64 64 -25 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 137
+// entity 136
 {
 "targetname" "trap_4_platform_0_0"
 "classname" "script_brushmodel"
@@ -12823,7 +12809,7 @@ iwmap 4
  ( -2709 7 -748.5 ) ( -2709 614.5 -748.5 ) ( -2709 614.5 -716.5 ) me_floor_shinyblack 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 138
+// entity 137
 {
 "targetname" "trap_4_platform_0_1"
 "classname" "script_brushmodel"
@@ -12892,7 +12878,7 @@ iwmap 4
  ( -2614 7 -748.5 ) ( -2614 614.5 -748.5 ) ( -2614 614.5 -716.5 ) me_floor_shinyblack 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 139
+// entity 138
 {
 "targetname" "trap_4_platform_1_0"
 "classname" "script_brushmodel"
@@ -12960,7 +12946,7 @@ iwmap 4
  ( -2709 136.5 -748.5 ) ( -2709 744 -748.5 ) ( -2709 744 -716.5 ) me_floor_shinyblack 64 64 129.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 140
+// entity 139
 {
 "targetname" "trap_4_platform_1_1"
 "classname" "script_brushmodel"
@@ -13029,7 +13015,7 @@ iwmap 4
  ( -2614 136.5 -748.5 ) ( -2614 744 -748.5 ) ( -2614 744 -716.5 ) me_floor_shinyblack 64 64 129.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 141
+// entity 140
 {
 "targetname" "trap_5_pillar_0"
 "classname" "script_brushmodel"
@@ -13097,7 +13083,7 @@ iwmap 4
  ( -2748 218 -749.5 ) ( -2568 218 -749.5 ) ( -2568 218 -765.5 ) ch_factory_corrugatedsiding4 -38 157.5 -15.5 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 142
+// entity 141
 {
 "targetname" "trap_5_pillar_1"
 "classname" "script_brushmodel"
@@ -13165,7 +13151,7 @@ iwmap 4
  ( -2804.5 224 -749.5 ) ( -2624.5 224 -749.5 ) ( -2624.5 224 -765.5 ) ch_factory_corrugatedsiding4 -6 157.5 -0.5 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 143
+// entity 142
 {
 "targetname" "trap_5_pillar_fake"
 "classname" "script_brushmodel"
@@ -13179,7 +13165,7 @@ iwmap 4
  ( -2981 233.5 -749.5 ) ( -2801 233.5 -749.5 ) ( -2801 233.5 -765.5 ) ch_factory_corrugatedsiding4 -25.5 157.5 -15.5 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 144
+// entity 143
 {
 "spawnflags" "12"
 "dmg" "200"
@@ -13194,7 +13180,7 @@ iwmap 4
  ( -2875.5 -84 -693 ) ( -2875.5 -100 -693 ) ( -2875.5 -100 -695 ) trigger 64 64 0.5 -14.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 145
+// entity 144
 {
 "targetname" "trap_6_platform"
 "classname" "script_brushmodel"
@@ -13208,7 +13194,7 @@ iwmap 4
  ( -3265.5 -76.5 -749 ) ( -3085.5 -76.5 -749 ) ( -3085.5 -76.5 -765 ) me_floor_shinyblack 64 64 -544.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 146
+// entity 145
 {
 "targetname" "trap_7_bounce"
 "classname" "script_brushmodel"
@@ -13222,7 +13208,7 @@ iwmap 4
  ( -3147.5 -109.5 -909 ) ( -3207.5 -109.5 -789 ) ( -3147.5 -77.5 -909 ) ch_factory_corrugatedsiding4 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 147
+// entity 146
 {
 "spawnflags" "12"
 "dmg" "200"
@@ -13238,7 +13224,7 @@ iwmap 4
  ( -3130 118 -625 ) ( -3120.5 118 -625 ) ( -3130 150 -625 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 148
+// entity 147
 {
 "targetname" "trap_6_knocker"
 "classname" "script_brushmodel"
@@ -13612,7 +13598,7 @@ iwmap 4
  ( -3114.5 74.5 -548 ) ( -3095 92 -530 ) ( -3095 92.5 -566 ) ch_factory_corrugatedsiding4 -19.5 15 -14 12.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 149
+// entity 148
 {
 "targetname" "trap_5_button"
 "classname" "script_brushmodel"
@@ -13776,7 +13762,7 @@ iwmap 4
   }
  }
 }
-// entity 150
+// entity 149
 {
 "hintstring" "Press ^3&&1 ^7to ^1delete pillars"
 "targetname" "trap_5_trigger"
@@ -13791,7 +13777,7 @@ iwmap 4
  ( -3106 369 -719.5 ) ( -3106 343.5 -719.5 ) ( -3106 343.5 -749 ) trigger 64 64 9 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 151
+// entity 150
 {
 "targetname" "trap_6_button"
 "classname" "script_brushmodel"
@@ -13955,7 +13941,7 @@ iwmap 4
   }
  }
 }
-// entity 152
+// entity 151
 {
 "hintstring" "Press ^3&&1 ^7to ^1kill everyone on the platform"
 "targetname" "trap_6_trigger"
@@ -13970,7 +13956,7 @@ iwmap 4
  ( -3530.5 1.5 -719.5 ) ( -3505 1.5 -719.5 ) ( -3505 1.5 -749 ) trigger 64 64 21.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 153
+// entity 152
 {
 "targetname" "trap_7_button"
 "classname" "script_brushmodel"
@@ -14134,7 +14120,7 @@ iwmap 4
   }
  }
 }
-// entity 154
+// entity 153
 {
 "hintstring" "Press ^3&&1 ^7to ^1rotate bounce"
 "targetname" "trap_7_trigger"
@@ -14149,7 +14135,7 @@ iwmap 4
  ( -3530.5 -216.5 -719.5 ) ( -3505 -216.5 -719.5 ) ( -3505 -216.5 -749 ) trigger 64 64 15.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 155
+// entity 154
 {
 "targetname" "trap_5_pillar_2"
 "classname" "script_brushmodel"
@@ -14191,12 +14177,12 @@ iwmap 4
 }
 // brush 4
 {
- ( -3139 201.5 -960 ) ( -2983.5 291.5 -960 ) ( -3071.5 443.5 -960 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2987.5 289 -770.5 ) ( -3143 199 -770.5 ) ( -3231 351.5 -770.5 ) ch_factory_corrugatedsiding4 -30.254395 17.924622 -1.2929688 8.6375885 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -3202.5 227.5 -749.5 ) ( -3046.5 317.5 -749.5 ) ( -3046.5 317.5 -717.5 ) ch_factory_corrugatedsiding4 -29.794678 157.5 -21.147705 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -3227 117 -749 ) ( -3531 643 -749 ) ( -3531 643 -717 ) ch_factory_corrugatedsiding4 -0.73548889 157.5 -0.48739624 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -3203 150.5 -782.5 ) ( -3198.5 143.5 -782.5 ) ( -3198.5 143.5 -750.5 ) ch_factory_corrugatedsiding4 -0.70787048 157.5 -0.24031067 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -3154 254.5 -781.5 ) ( -2998 344.5 -781.5 ) ( -2998 344.5 -797.5 ) ch_factory_corrugatedsiding4 -29.829102 157.5 -16.970215 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3139 201.5 -960 ) ( -2983.5 291.5 -960 ) ( -3071.5 443.5 -960 ) ch_factory_corrugatedsiding4 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2987.5 289 -770.5 ) ( -3143 199 -770.5 ) ( -3231 351.5 -770.5 ) ch_factory_corrugatedsiding4 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3202.5 227.5 -749.5 ) ( -3046.5 317.5 -749.5 ) ( -3046.5 317.5 -717.5 ) ch_factory_corrugatedsiding4 -29.794678 189.5 -21.147705 12.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3227 117 -749 ) ( -3531 643 -749 ) ( -3531 643 -717 ) ch_factory_corrugatedsiding4 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3203 150.5 -782.5 ) ( -3198.5 143.5 -782.5 ) ( -3198.5 143.5 -750.5 ) ch_factory_corrugatedsiding4 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3154 254.5 -781.5 ) ( -2998 344.5 -781.5 ) ( -2998 344.5 -797.5 ) ch_factory_corrugatedsiding4 -29.829102 189.5 -16.970215 12.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 // brush 5
 {
@@ -14226,7 +14212,7 @@ iwmap 4
  ( -3201 146.5 -749.5 ) ( -3021 146.5 -749.5 ) ( -3021 146.5 -765.5 ) ch_factory_corrugatedsiding4 -7 157.5 -3 140.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 156
+// entity 155
 {
 "origin" "-3294.0 59.0 -698.0"
 "def" "light_point_linear"
@@ -14235,7 +14221,7 @@ iwmap 4
 "intensity" "1"
 "classname" "light"
 }
-// entity 157
+// entity 156
 {
 "origin" "-2820.0 59.0 -694.0"
 "def" "light_point_linear"
@@ -14244,7 +14230,7 @@ iwmap 4
 "intensity" "1"
 "classname" "light"
 }
-// entity 158
+// entity 157
 {
 "origin" "-3044.0 219.0 -694.0"
 "def" "light_point_linear"
@@ -14253,7 +14239,7 @@ iwmap 4
 "intensity" "1"
 "classname" "light"
 }
-// entity 159
+// entity 158
 {
 "classname" "trigger_use_touch"
 "targetname" "trap_3_trigger"
@@ -14268,7 +14254,7 @@ iwmap 4
  ( -1245 346.5 -718.5 ) ( -1245 321 -718.5 ) ( -1245 321 -748 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 160
+// entity 159
 {
 "classname" "trigger_use_touch"
 "targetname" "trap_2_trigger"
@@ -14283,7 +14269,7 @@ iwmap 4
  ( -622 321 -718.5 ) ( -622 321 -748 ) ( -622 346.5 -748 ) trigger 64 64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 161
+// entity 160
 {
 "classname" "trigger_use_touch"
 "targetname" "trap_1_trigger"
@@ -14298,7 +14284,7 @@ iwmap 4
  ( -78 336.5 -719 ) ( -78 321 -719 ) ( -78 321 -727 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 162
+// entity 161
 {
 "classname" "trigger_use_touch"
 "hintstring" "Press ^3&&1 ^7to ^1remove floor"
@@ -14313,7 +14299,7 @@ iwmap 4
  ( 191 336.5 -719 ) ( 191 321 -719 ) ( 191 321 -727 ) trigger 64 64 -0.5 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 163
+// entity 162
 {
 "targetname" "misc_0_button"
 "classname" "script_brushmodel"
@@ -14327,7 +14313,7 @@ iwmap 4
  ( 118 306 64 ) ( 102 306 64 ) ( 118 338 64 ) me_floor_shinyblack 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 164
+// entity 163
 {
 "targetname" "misc_0_trigger"
 "hintstring" "[^3VIP^7] Press ^3&&1 ^7to get an ^5awesome weapon"
@@ -14342,7 +14328,7 @@ iwmap 4
  ( 118 306 66 ) ( 102 306 66 ) ( 118 338 66 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 165
+// entity 164
 {
 "targetname" "ascii_game_trigger_10"
 "spawnflags" "4"
@@ -14357,7 +14343,7 @@ iwmap 4
  ( -43 304 33 ) ( -59 304 33 ) ( -43 336 33 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 166
+// entity 165
 {
 "targetname" "ascii_game_trigger_0"
 "spawnflags" "4"
@@ -14372,7 +14358,7 @@ iwmap 4
  ( -25 304 33 ) ( -41 304 33 ) ( -25 336 33 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 167
+// entity 166
 {
 "targetname" "ascii_game_trigger_11"
 "spawnflags" "4"
@@ -14387,7 +14373,7 @@ iwmap 4
  ( -7 304 33 ) ( -23 304 33 ) ( -7 336 33 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 168
+// entity 167
 {
 "targetname" "ascii_game_trigger_1"
 "spawnflags" "4"
@@ -14402,7 +14388,7 @@ iwmap 4
  ( -43 304 51 ) ( -59 304 51 ) ( -43 336 51 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 169
+// entity 168
 {
 "targetname" "ascii_game_trigger_2"
 "spawnflags" "4"
@@ -14417,7 +14403,7 @@ iwmap 4
  ( -25 304 51 ) ( -41 304 51 ) ( -25 336 51 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 170
+// entity 169
 {
 "targetname" "ascii_game_trigger_3"
 "spawnflags" "4"
@@ -14432,7 +14418,7 @@ iwmap 4
  ( -7 304 51 ) ( -23 304 51 ) ( -7 336 51 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 171
+// entity 170
 {
 "targetname" "ascii_game_trigger_4"
 "spawnflags" "4"
@@ -14447,7 +14433,7 @@ iwmap 4
  ( -43 304 69 ) ( -59 304 69 ) ( -43 336 69 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 172
+// entity 171
 {
 "targetname" "ascii_game_trigger_5"
 "spawnflags" "4"
@@ -14462,7 +14448,7 @@ iwmap 4
  ( -25 304 69 ) ( -41 304 69 ) ( -25 336 69 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 173
+// entity 172
 {
 "targetname" "ascii_game_trigger_6"
 "spawnflags" "4"
@@ -14477,7 +14463,7 @@ iwmap 4
  ( -7 304 69 ) ( -23 304 69 ) ( -7 336 69 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 174
+// entity 173
 {
 "targetname" "ascii_game_trigger_7"
 "spawnflags" "4"
@@ -14492,7 +14478,7 @@ iwmap 4
  ( -43 304 87 ) ( -59 304 87 ) ( -43 336 87 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 175
+// entity 174
 {
 "targetname" "ascii_game_trigger_8"
 "spawnflags" "4"
@@ -14505,6 +14491,20 @@ iwmap 4
  ( -41 304 71 ) ( -25 304 71 ) ( -41 336 71 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( -25 304 71 ) ( -25 304 87 ) ( -25 336 71 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( -25 304 87 ) ( -41 304 87 ) ( -25 336 87 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 175
+{
+"classname" "script_brushmodel"
+"targetname" "password_game_door"
+// brush 0
+{
+ ( -2376.5 -86 -512 ) ( -2394 -86 -512 ) ( -2376.5 -86 -480 ) me_door_rollup1 107.5 -97.5 8.1667833 -66.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2482.5 304 -749 ) ( -2466.5 304 -749 ) ( -2482.5 336 -749 ) me_door_rollup1 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2470.5 -76 -512 ) ( -2466.5 -76 -512 ) ( -2466.5 -76 -480 ) me_door_rollup1 107.49664 -97.5 8.5767851 -66.5 -180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2588.5 -74 -643.5 ) ( -2588.5 -89 -643.5 ) ( -2588.5 -89 -611.5 ) caulk 64 64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2604.5 -73 -651.5 ) ( -2610 -73 -651.5 ) ( -2604.5 -41 -651.5 ) caulk 64 64 -45 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2696 -251 -653 ) ( -2696 -251 -667 ) ( -2696 -219 -653 ) caulk 64 64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 176

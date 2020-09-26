@@ -181,6 +181,7 @@ moverTrap(trapId, mover, axis, amount, time, interval, stopOnActivate, removeCol
 	}	
 }
 
+//Start door moving platform
 startPlatform() {
 	level waittill("round_started");
 	startPlatform = getEnt("start_platform", "targetname");
@@ -216,6 +217,7 @@ startPlatform() {
 	}
 }
 
+//Trap functionality
 trapData(id) {
 	self.activatedTraps[id] = false;
 	level.trapTriggers[id] = getEnt("trap_" + id + "_trigger", "targetname");
@@ -470,7 +472,7 @@ passwordGameListener(id) {
 						iPrintLnBold("^1" + player.name + " ^7has unlocked the checkpoint!");
 
 						door = getEnt("password_game_door", "targetname");
-						door moveZ(98, 5); //open the door
+						door moveZ(97, 5); //open the door
 					} else {
 						self.passwordGameInput = [];
 						passwordGameReset(0, self.passwordGameRows - 1, 0); //reset user input
