@@ -11,7 +11,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 1;
+	self.miscCount = 2;
 
 	thread startPlatform();
 
@@ -358,14 +358,21 @@ trapData(id) {
 miscData(id) {
 	while (true) {
 		miscTrigger = getEnt("misc_" + id + "_trigger", "targetname");
+
+		if (!isDefined(miscTrigger))
+			return;
+
 		miscTrigger waittill("trigger", player);
 
 		switch(id) {
-			case 0:
+			case 0: //VIP Button
 				if (isDefined(player.pers["vip"]) && player.pers["vip"]) {
 					player suicide();
 					miscAnim(getEnt("misc_" + id + "_button", "targetname"), "y", 6, 0.5, true);
 				}
+				break;
+			case 1: //End door
+				miscAnim(getEnt("misc_" + id + "_door", "targetname"), "x", 120, 5, false);
 				break;
 			default:
 				break;
