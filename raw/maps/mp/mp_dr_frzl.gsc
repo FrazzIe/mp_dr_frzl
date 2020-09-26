@@ -373,6 +373,7 @@ miscData(id) {
 	}
 }
 
+//trigger_once passive trap, variation of "Tip Toe" from Fall Guys
 createPlatformGame() {
 	platformColumns = 3;
 	platformRows = 5;
@@ -410,6 +411,7 @@ addDummyPlatform(row, column) {
 	platform delete();
 }
 
+//use-touch trigger color based password system (Map checkpoint, slows down gameplay)
 createPasswordGame() {
 	//0 - Blue (Background / Unselected)
 	//1 - Red
