@@ -589,7 +589,6 @@ asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and en
 
 					if (asciiGameMatch(self.asciiGamePassword, self.asciiGameInput)) {
 						self.asciiGameEnabled = false;
-						iPrintLnBold("^1" + player.name + " ^7unlocked the secret!");
 						iPrintLn("^1>> ^7ASCII Game: ^3" + inputStr + " ^7was the ^2correct ^7answer!");
 						iPrintLnBold("^1" + player.name + " ^7unlocked the secret!");
 						door = getEnt("ascii_game_door", "targetname");
