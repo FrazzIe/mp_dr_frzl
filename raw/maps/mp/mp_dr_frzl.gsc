@@ -25,6 +25,7 @@ main() {
 
 	createPlatformGame();
 	createPasswordGame();
+	asciiGame();
 }
 
 trapAnim(target) {
@@ -502,4 +503,141 @@ passwordGameReset(rowIdx, rowCount, showColourIdx) {
 			}
 		}
 	}
+}
+
+//ASCII Decimal input using damage triggers (supports ASCII Decimal 32-126)
+asciiMap() { //Create an array map of ascii characters
+	ascii = "! \" # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \\ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~";
+	ascii = strTok(ascii, " ");
+	asciiMap = [];
+	asciiMap["toChar"] = [];
+	asciiMap["toNumber"] = [];
+	asciiMap["offset"] = 32;
+
+	asciiMap["toChar"][0] = " ";
+	asciiMap["toNumber"][" "] = 0;
+
+	for (id = 0; id < ascii.size; id++) {
+		asciiMap["toChar"][id + 1] = ascii[id];
+		asciiMap["toNumber"][ascii[id]] = id + 1;
+	}
+
+	return asciiMap;
+}
+
+asciiGame() {
+	self.asciiMap = asciiMap();
+	self.asciiGamePassword = asciiGameCreatePassword("F R Z L", " ");
+	self.asciiGameInput = [];
+	self.asciiGameButtons = 12;
+	self.asciiGameEnabled = true;
+
+	for (button = 0; button < self.asciiGameButtons; button++) {
+		thread asciiGameListener(button);
+	}
+}
+
+asciiGameCreatePassword(str, delim) { //Transform a word into an array of ascii decimals
+	password = [];
+	chars = strTok(str, delim);
+
+	for (char = 0; char < chars.size; char++) {
+		password[char] = [];
+		digits = [];
+		num = self.asciiMap["toNumber"][chars[char]] + self.asciiMap["offset"];
+
+		while (num > 0) {
+			digit = int(num % 10);
+			digits[digits.size] = digit;
+			num = int(num / 10);
+		}
+
+		if (digits.size < 3)
+			digits[digits.size] = 0;
+
+		for (i = digits.size - 1; i >= 0; i--) 
+			password[char][password[char].size] = digits[i];
+	}
+
+	return password;
+}
+
+asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and enter (11)
+	trigger = getEnt("ascii_game_trigger_" + id, "targetname");
+
+	while(self.asciiGameEnabled) {
+		trigger waittill("trigger", player);
+
+		if (self.asciiGameEnabled) {
+			switch(id) {
+				case 10:
+					self.asciiGameInput = [];
+					iPrintLn("^1>> ^7ASCII Game: ^7The input has been ^1reset");
+					break;
+				case 11:
+					inputStr = asciiGameToString(self.asciiGameInput);
+					if (inputStr == "")
+						inputStr = "[^1EMPTY^3]";
+
+					if (asciiGameMatch(self.asciiGamePassword, self.asciiGameInput)) {
+						self.asciiGameEnabled = false;
+						iPrintLnBold("^1" + player.name + " ^7unlocked the secret!");
+						iPrintLn("^1>> ^7ASCII Game: ^3" + inputStr + " ^7was the ^2correct ^7answer!");
+					} else {
+						iPrintLn("^1>> ^7ASCII Game: ^3" + inputStr + " ^7was the ^1wrong ^7answer, try again!");
+					}
+					break;
+				default:
+					if (self.asciiGameInput.size == 0) {
+						self.asciiGameInput[self.asciiGameInput.size] = [];
+						self.asciiGameInput[self.asciiGameInput.size - 1][0] = id;
+					} else if (self.asciiGameInput[self.asciiGameInput.size - 1].size < 3) {
+						self.asciiGameInput[self.asciiGameInput.size - 1][self.asciiGameInput[self.asciiGameInput.size - 1].size] = id;
+					} else {
+						self.asciiGameInput[self.asciiGameInput.size] = [];
+						self.asciiGameInput[self.asciiGameInput.size - 1][0] = id;
+					}
+					break;
+			}
+		}
+	}
+
+	trigger delete();
+}
+
+asciiGameToString(chars) { //Tranform array of ascii decimals into a string
+	inputStr = "";
+	//inputNumStr = "";
+
+	for (char = 0; char < chars.size; char++) {
+		if (isDefined(chars[char][2])) {
+			num = (chars[char][0] * 100) + (chars[char][1] * 10) + chars[char][2] - self.asciiMap["offset"];
+
+			//inputNumStr += "[ ^1" + num + "^7, (^2" + chars[char][0] + "^7, ^2" + chars[char][1] + "^7, ^2" + chars[char][2] + "^7) ]";
+
+			if (isDefined(self.asciiMap["toChar"][num]))
+				inputStr += self.asciiMap["toChar"][num];
+			else
+				inputStr += "?";
+		}
+	}
+
+	//iPrintLn("^1>> ^7ASCII Game: " + inputNumStr);
+	return inputStr;
+}
+
+asciiGameMatch(passwordA, passwordB) { //Check if two ascii decimal arrays match
+	if (passwordA.size != passwordB.size)
+		return false;
+	
+	for (i = 0; i < passwordA.size; i++) {
+		if (passwordA[i].size != passwordB[i].size)
+			return false;
+		for (j = 0; j < passwordA[i].size; j++) {
+			if (passwordA[i][j] != passwordB[i][j])
+				return false;
+		}
+	}
+
+	return true;
 }
