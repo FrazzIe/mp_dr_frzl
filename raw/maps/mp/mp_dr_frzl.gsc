@@ -609,7 +609,7 @@ asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and en
 						self.asciiGameInput[self.asciiGameInput.size] = [];
 						self.asciiGameInput[self.asciiGameInput.size - 1][0] = id;
 					}
-					asciiGameStatus(1);
+					asciiGameStatus(0);
 					break;
 			}
 		}
@@ -623,7 +623,7 @@ asciiGameStatus(id) { //Set visual status of ascii response
 	//1 - Red (Wrong)
 	//2 - Green (Correct)
 	for (i = 0; i < self.asciiGameStatus; i++) {
-		statusBrush = getEnt("ascii_game_status_" + id, "targetname");
+		statusBrush = getEnt("ascii_game_status_" + i, "targetname");
 		if (i != id)
 			statusBrush hide();
 		else
