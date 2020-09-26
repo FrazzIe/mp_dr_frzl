@@ -534,11 +534,14 @@ asciiGame() {
 	self.asciiGamePassword = asciiGameCreatePassword("F R Z L", " ");
 	self.asciiGameInput = [];
 	self.asciiGameButtons = 12;
+	self.asciiGameStatus = 3;
 	self.asciiGameEnabled = true;
 
 	for (button = 0; button < self.asciiGameButtons; button++) {
 		thread asciiGameListener(button);
 	}
+
+	asciiGameStatus(0);
 }
 
 asciiGameCreatePassword(str, delim) { //Transform a word into an array of ascii decimals
@@ -576,6 +579,7 @@ asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and en
 			switch(id) {
 				case 10:
 					self.asciiGameInput = [];
+					asciiGameStatus(0);
 					iPrintLn("^1>> ^7ASCII Game: ^7The input has been ^1reset");
 					break;
 				case 11:
@@ -587,8 +591,13 @@ asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and en
 						self.asciiGameEnabled = false;
 						iPrintLnBold("^1" + player.name + " ^7unlocked the secret!");
 						iPrintLn("^1>> ^7ASCII Game: ^3" + inputStr + " ^7was the ^2correct ^7answer!");
+						iPrintLnBold("^1" + player.name + " ^7unlocked the secret!");
+						door = getEnt("ascii_game_door", "targetname");
+						door moveY(64, 5);
+						asciiGameStatus(2);
 					} else {
 						iPrintLn("^1>> ^7ASCII Game: ^3" + inputStr + " ^7was the ^1wrong ^7answer, try again!");
+						asciiGameStatus(1);
 					}
 					break;
 				default:
@@ -601,12 +610,26 @@ asciiGameListener(id) { //Handle ascii number inputs (0-9) and clear (10) and en
 						self.asciiGameInput[self.asciiGameInput.size] = [];
 						self.asciiGameInput[self.asciiGameInput.size - 1][0] = id;
 					}
+					asciiGameStatus(1);
 					break;
 			}
 		}
 	}
 
 	trigger delete();
+}
+
+asciiGameStatus(id) { //Set visual status of ascii response
+	//0 - Blue (Normal)
+	//1 - Red (Wrong)
+	//2 - Green (Correct)
+	for (i = 0; i < self.asciiGameStatus; i++) {
+		statusBrush = getEnt("ascii_game_status_" + id, "targetname");
+		if (i != id)
+			statusBrush hide();
+		else
+			statusBrush show();
+	}
 }
 
 asciiGameToString(chars) { //Tranform array of ascii decimals into a string
