@@ -11,7 +11,8 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 2;
+	self.miscCount = 13;
+	self.roomOccupied = false;
 
 	thread startPlatform();
 
@@ -374,6 +375,61 @@ miscData(id) {
 			case 1: //End door
 				miscAnim(getEnt("misc_" + id + "_door", "targetname"), "x", 120, 5, false);
 				break;
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+			case 11: //End Rooms
+				if (!self.roomOccupied)
+					continue;
+				// if (!plugins\_respect::roomCheck(player)) //uncomment for respect plugin support
+				// 		continue;
+
+				self.roomOccupied = true;
+				player thread roomDeathListener();
+
+				switch(id) {
+					case 2:
+						iPrintLnBold("Sniper");
+						break;
+					case 3:
+						iPrintLnBold("Weapon");
+						break;
+					case 4:
+						iPrintLnBold("Knife");
+						break;
+					case 5:
+						iPrintLnBold("Nade");
+						break;
+					case 6:
+						iPrintLnBold("RPG");
+						break;
+					case 7:
+						iPrintLnBold("Pistol");
+						break;
+					case 8:
+						iPrintLnBold("Flashbang");
+						break;
+					case 9:
+						iPrintLnBold("Simon Says");
+						break;
+					case 10:
+						iPrintLnBold("Bounce");
+						break;
+					case 11:
+						iPrintLnBold("Old Mayhem");
+					case 12:
+						iPrintLnBold("Old 1v1");
+						break;
+					default:
+						break;
+				}
+				break;
 			default:
 				break;
 		}
@@ -697,6 +753,14 @@ activatorDoor(open) {
 		wait(2.5);
 		doorBottom moveZ(41, 2.5);
 		wait(1);
-		doorBarrier show();		
+		doorBarrier show();
 	}
+}
+
+roomDeathListener() {
+	while (isDefined(self) && isAlive(self)) {
+		wait(0.1);
+	}
+
+	self.roomOccupied = false;
 }
