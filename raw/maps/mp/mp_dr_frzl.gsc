@@ -674,3 +674,29 @@ asciiGameMatch(passwordA, passwordB) { //Check if two ascii decimal arrays match
 
 	return true;
 }
+
+activatorDoor(open) {
+	doorTop = getEnt("activator_door_top", "targetname");
+	doorBottom = getEnt("activator_door_bottom", "targetname");
+	doorBottomLeft = getEnt("activator_door_bottom_left", "targetname");
+	doorBottomRight = getEnt("activator_door_bottom_right", "targetname");
+	doorBarrier = getEnt("activator_door_barrier", "targetname");
+
+	if (open) {
+		doorTop moveZ(98, 5);
+		doorBottom moveZ(-41, 2.5);
+		wait(2.5);
+		doorBottomLeft moveX(80, 1);
+		doorBottomRight moveX(-80, 1);
+		wait(1);
+		doorBarrier hide();
+	} else {
+		doorBottomLeft moveX(-80, 1);
+		doorBottomRight moveX(80, 1);
+		doorTop moveZ(-98, 5);
+		wait(2.5);
+		doorBottom moveZ(41, 2.5);
+		wait(1);
+		doorBarrier show();		
+	}
+}
