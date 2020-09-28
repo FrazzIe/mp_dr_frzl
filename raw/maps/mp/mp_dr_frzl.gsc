@@ -11,7 +11,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 13;
+	self.miscCount = 14;
 	self.roomOccupied = false;
 
 	thread startPlatform();
@@ -396,7 +396,7 @@ miscData(id) {
 					continue;
 
 				if (isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin) { //check if respect plugin is enabled
-					if (!respectPluginCheck(player))
+					if (!respectPluginCheck(player, id))
 						continue;
 				} else if (self.roomOccupied)
 					continue;
@@ -779,8 +779,8 @@ roomDeathListener() {
 }
 
 //Respect plugin
-respectPluginCheck(player) { //support for _respect plugin
-	if (level.finishPosition[level.playerEnterNum].guid != player.guid || level.inRoomPlugin) {
+respectPluginCheck(player, id) { //support for _respect plugin
+	if (level.finishPosition[level.playerEnterNum].guid != player.guid || (level.inRoomPlugin && id != 13) ) {
 		player IPrintLnBold("^1Wait your turn");
 		//teleport player here
 		player setOrigin((-3428.0, -128.0, -736.0));
