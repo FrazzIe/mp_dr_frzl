@@ -783,7 +783,6 @@ respectPluginCheck(player) { //support for _respect plugin
 	if (level.finishPosition[level.playerEnterNum].guid != player.guid || level.inRoomPlugin) {
 		player IPrintLnBold("^1Wait your turn");
 		//teleport player here
-		print("^1RESPECT: ^7FALSE");
 		return false;
 	}
 
@@ -791,7 +790,6 @@ respectPluginCheck(player) { //support for _respect plugin
 	level.inRoomPlugin = true;
 	player thread respectPluginOnRoomDeath();
 	respectPluginUpdateHud();
-	print("^1RESPECT: ^7TRUE");
 	return true;
 }
 
