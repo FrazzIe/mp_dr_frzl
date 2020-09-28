@@ -783,6 +783,8 @@ respectPluginCheck(player) { //support for _respect plugin
 	if (level.finishPosition[level.playerEnterNum].guid != player.guid || level.inRoomPlugin) {
 		player IPrintLnBold("^1Wait your turn");
 		//teleport player here
+		player setOrigin((-3428.0, -128.0, -736.0));
+		player setPlayerAngles((0.0, -90.0, 0.0));
 		return false;
 	}
 
