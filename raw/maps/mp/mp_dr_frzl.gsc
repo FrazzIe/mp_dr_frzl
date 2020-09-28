@@ -384,14 +384,27 @@ miscData(id) {
 			case 8:
 			case 9:
 			case 10:
-			case 11: //End Rooms
-				if (!self.roomOccupied)
+			case 11:
+			case 12:
+			case 13: //End Rooms
+				if (isDefined(player.ghost) && player.ghost) {
+					player suicide();
 					continue;
-				// if (!plugins\_respect::roomCheck(player)) //uncomment for respect plugin support
-				// 		continue;
+				} //kill players in ghost mode
 
-				self.roomOccupied = true;
-				player thread roomDeathListener();
+				if (player.pers["team"] == "axis") //only accept jumper triggers
+					continue;
+
+				if (isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin) { //check if respect plugin is enabled
+					if (!respectPluginCheck(player))
+						continue;
+				} else if (self.roomOccupied)
+					continue;
+
+				if (!(isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin)) { //check if respect plugin is disabled
+					self.roomOccupied = true;
+					player thread roomDeathListener();
+				}
 
 				switch(id) {
 					case 2:
@@ -763,4 +776,36 @@ roomDeathListener() {
 	}
 
 	self.roomOccupied = false;
+}
+
+//Respect plugin
+respectPluginCheck(player) { //support for _respect plugin
+	if (level.finishPosition[level.playerEnterNum].guid != player.guid || level.inRoomPlugin) {
+		player IPrintLnBold("^1Wait your turn");
+		//teleport player here
+		print("^1RESPECT: ^7FALSE");
+		return false;
+	}
+
+	player notify("romm_enter_plugin"); //stop the onQueueDeath check
+	level.inRoomPlugin = true;
+	player thread respectPluginOnRoomDeath();
+	respectPluginUpdateHud();
+	print("^1RESPECT: ^7TRUE");
+	return true;
+}
+
+respectPluginOnRoomDeath() {
+	while(isAlive(self) && isDefined(self))
+		wait(0.1);
+	level.playerEnterNum++;
+	level.inRoomPlugin = false;
+	respectPluginUpdateHud();
+}
+
+respectPluginUpdateHud() {
+	queueStr = "";
+	for (i = level.playerEnterNum; i < level.finishPosition.size; i++)
+		queueStr += level.finishPosition[i].name + "\n";
+	level.queueHud SetText(queueStr);
 }
