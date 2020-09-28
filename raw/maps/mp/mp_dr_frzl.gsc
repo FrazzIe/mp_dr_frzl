@@ -758,7 +758,7 @@ activatorDoor(open) {
 		doorBottomLeft moveX(80, 1);
 		doorBottomRight moveX(-80, 1);
 		wait(1);
-		doorBarrier hide();
+		doorBarrier notSolid();
 	} else {
 		doorBottomLeft moveX(-80, 1);
 		doorBottomRight moveX(80, 1);
@@ -766,7 +766,7 @@ activatorDoor(open) {
 		wait(2.5);
 		doorBottom moveZ(41, 2.5);
 		wait(1);
-		doorBarrier show();
+		doorBarrier solid();
 	}
 }
 
