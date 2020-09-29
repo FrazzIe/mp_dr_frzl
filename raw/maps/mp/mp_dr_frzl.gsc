@@ -1,5 +1,6 @@
 main() {
 	maps\mp\_load::main();
+	maps\mp\_explosive_barrels::main();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
