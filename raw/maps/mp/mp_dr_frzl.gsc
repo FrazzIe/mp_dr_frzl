@@ -457,6 +457,20 @@ miscData(id) {
 	}
 }
 
+
+roomTeleportListener(roomId, side, spawnCount) {
+	trigger = getEnt("misc_" + roomId + "_teleport_" + side, "targetname");
+
+	if (isDefined(trigger))
+		while(self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) {
+			trigger waittill("trigger", player);
+			spawnPoint = randomInt(spawnCount);
+			spawn = getEnt("misc_" + roomId + "_spawn_" + side + "_" + spawnPoint, "targetname");
+			player setOrigin(spawn.origin);
+			player setPlayerAngles(spawn.angles);
+		};
+}
+
 //trigger_once passive trap, variation of "Tip Toe" from Fall Guys
 createPlatformGame() {
 	platformColumns = 3;
