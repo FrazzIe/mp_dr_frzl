@@ -12,7 +12,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 14;
+	self.miscCount = 15;
 	self.roomOccupied = false;
 
 	thread startPlatform();
@@ -443,6 +443,11 @@ miscData(id) {
 					default:
 						break;
 				}
+				break;
+			case 14:
+				if (!player hasWeapon("m40a3_mp"))
+					player giveWeapon("m40a3_mp");
+				player giveMaxAmmo("m40a3_mp");
 				break;
 			default:
 				break;
