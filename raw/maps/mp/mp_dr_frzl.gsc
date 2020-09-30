@@ -457,7 +457,35 @@ miscData(id) {
 						iPrintLnBold("Weapon");
 						break;
 					case 4: //Knife room
-						iPrintLnBold("Knife");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Knife");
+
+						spawnPoint = randomInt(2);
+
+						for (side = 0; side < spawnSide.size; side++)
+							thread roomTeleportListener(id, side, 2);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_4_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("knife_mp");
+							players[player] switchToWeapon("knife_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 5: //Nade room
 						iPrintLnBold("Nade");
