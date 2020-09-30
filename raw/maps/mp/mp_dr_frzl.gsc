@@ -516,9 +516,12 @@ miscData(id) {
 				}
 				break;
 			case 14: //Bounce room weapon pickup
-				if (!player hasWeapon("m40a3_mp"))
+				if (!player hasWeapon("m40a3_mp")) {
 					player giveWeapon("m40a3_mp");
+
+				}
 				player giveMaxAmmo("m40a3_mp");
+				player switchToWeapon("m40a3_mp");
 				break;
 			default:
 				break;
