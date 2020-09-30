@@ -407,9 +407,51 @@ miscData(id) {
 					player thread roomDeathListener();
 				}
 
+				players = [];
+				players[0] = player;
+				if (isDefined(level.activ) && isAlive(level.activ)) {
+					players[1] = level.activ;
+				}
+				spawnSide = [];
+				spawnSide[0] = randomInt(2);
+				spawnSide[1] = 0;
+				if (spawnSide[0] == spawnSide[1])
+					spawnSide[1] = 1;
+
 				switch(id) {
-						iPrintLnBold("Sniper");
 					case 2: //Sniper room
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Sniper");
+
+						spawnPoint = randomInt(3);
+
+						for (side = 0; side < spawnSide.size; side++)
+							thread roomTeleportListener(id, side, 3);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_2_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("m40a3_mp");
+							players[player] giveMaxAmmo("m40a3_mp");
+							players[player] giveWeapon("remington700_mp");
+							players[player] giveMaxAmmo("remington700_mp");
+							players[player] switchToWeapon("m40a3_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 3: //Weapon room
 						iPrintLnBold("Weapon");
