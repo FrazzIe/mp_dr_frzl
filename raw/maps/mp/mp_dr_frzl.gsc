@@ -503,7 +503,35 @@ miscData(id) {
 						iPrintLnBold("Simon Says");
 						break;
 					case 10: //Bounce room
-						iPrintLnBold("Bounce");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Bounce");
+
+						spawnPoint = randomInt(4);
+
+						for (side = 0; side < spawnSide.size; side++)
+							thread roomTeleportListener(id, side, 4);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_10_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("knife_mp");
+							players[player] switchToWeapon("knife_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 11: //Old room (Mayhem)
 						iPrintLnBold("Old Mayhem");
