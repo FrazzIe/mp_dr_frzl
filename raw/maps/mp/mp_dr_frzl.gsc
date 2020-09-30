@@ -408,43 +408,44 @@ miscData(id) {
 				}
 
 				switch(id) {
-					case 2:
 						iPrintLnBold("Sniper");
+					case 2: //Sniper room
 						break;
-					case 3:
+					case 3: //Weapon room
 						iPrintLnBold("Weapon");
 						break;
-					case 4:
+					case 4: //Knife room
 						iPrintLnBold("Knife");
 						break;
-					case 5:
+					case 5: //Nade room
 						iPrintLnBold("Nade");
 						break;
-					case 6:
+					case 6: //RPG room
 						iPrintLnBold("RPG");
 						break;
-					case 7:
+					case 7: //Pistol room
 						iPrintLnBold("Pistol");
 						break;
-					case 8:
+					case 8: //Flashbang room
 						iPrintLnBold("Flashbang");
 						break;
-					case 9:
+					case 9: //Simon says room
 						iPrintLnBold("Simon Says");
 						break;
-					case 10:
+					case 10: //Bounce room
 						iPrintLnBold("Bounce");
 						break;
-					case 11:
+					case 11: //Old room (Mayhem)
 						iPrintLnBold("Old Mayhem");
-					case 12:
+					case 12: //Old room (1v1)
 						iPrintLnBold("Old 1v1");
+						activatorDoor(true);
 						break;
 					default:
 						break;
 				}
 				break;
-			case 14:
+			case 14: //Bounce room weapon pickup
 				if (!player hasWeapon("m40a3_mp"))
 					player giveWeapon("m40a3_mp");
 				player giveMaxAmmo("m40a3_mp");
