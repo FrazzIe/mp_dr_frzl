@@ -12,7 +12,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 15;
+	self.miscCount = 17;
 	self.roomOccupied = false;
 
 	thread startPlatform();
@@ -550,6 +550,12 @@ miscData(id) {
 				}
 				player giveMaxAmmo("m40a3_mp");
 				player switchToWeapon("m40a3_mp");
+				break;
+			case 15: //Nade room ammo replenishment
+			case 16:
+				if (player hasWeapon("grenade_mp"))
+					player giveMaxAmmo("grenade_mp");
+				wait(1);
 				break;
 			default:
 				break;
