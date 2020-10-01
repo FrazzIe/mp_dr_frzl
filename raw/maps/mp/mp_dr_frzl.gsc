@@ -12,7 +12,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 19;
+	self.miscCount = 20;
 	self.roomOccupied = false;
 
 	precacheItem("m40a3_mp");
@@ -607,7 +607,6 @@ miscData(id) {
 							players[player] setNormalHealth(200);
 							players[player] freezeControls(true);
 							players[player] takeAllWeapons();
-							players[player] giveWeapon("knife_mp");
 							players[player] giveWeapon("rpg_mp");
 							players[player] giveMaxAmmo("rpg_mp");
 							players[player] switchToWeapon("rpg_mp");
@@ -790,6 +789,11 @@ miscData(id) {
 					continue;
 				if (player hasWeapon("flash_grenade_mp"))
 					player giveMaxAmmo("flash_grenade_mp");
+				wait(1);
+				break;
+			case 19:
+				if (player hasWeapon("rpg_mp"))
+					player giveMaxAmmo("rpg_mp");
 				wait(1);
 				break;
 			default:
