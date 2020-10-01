@@ -553,8 +553,8 @@ miscData(id) {
 				break;
 			case 15: //Nade room ammo replenishment
 			case 16:
-				if (player hasWeapon("grenade_mp"))
-					player giveMaxAmmo("grenade_mp");
+				if (player hasWeapon("frag_grenade_mp"))
+					player giveMaxAmmo("frag_grenade_mp");
 				wait(1);
 				break;
 			default:
