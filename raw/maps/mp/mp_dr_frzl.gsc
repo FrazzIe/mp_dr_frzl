@@ -776,6 +776,25 @@ miscData(id) {
 					case 11: //Old room (Mayhem)
 						iPrintLnBold("Old Mayhem");
 					case 12: //Old room (1v1)
+					case 13:
+						for (player = 0; player < players.size; player++) {
+							players[player] setNormalHealth(100);
+
+							if (isDefined(level.freeRun) && level.freeRun) { //remove weapons if freerun
+								players[player] takeAllWeapons();
+								players[player] giveWeapon("knife_mp");
+							} else {
+								if (player hasWeapon("raygun_mp") { //remove raygun
+									player takeWeapon("raygun_mp");
+									player giveWeapon("beretta_mp");
+								}
+
+								if (isDefined(level.dvar["vipWeapon"]) && player hasWeapon(level.dvar["vipWeapon"]) { //remove vip weapon
+									player takeWeapon(level.dvar["vipWeapon"]);
+									player giveWeapon("beretta_mp");
+								}
+							}
+						}
 						iPrintLnBold("Old 1v1");
 						activatorDoor(true);
 						break;
