@@ -16,10 +16,24 @@ main() {
 	self.roomOccupied = false;
 
 	precacheItem("m40a3_mp");
-	precacheItem("remington700_mp");
-	precacheItem("knife_mp");
-	precacheItem("frag_grenade_mp");
-	preCacheItem("flash_grenade_mp");
+	precacheItem("remington700_mp"); //sniper room
+	precacheItem("knife_mp"); //ss, knife, bounce rooms
+	precacheItem("frag_grenade_mp"); //nade room
+	preCacheItem("flash_grenade_mp"); //flash room
+	preCacheItem("p90_mp");
+	preCacheItem("m16_mp");
+	preCacheItem("dragunov_mp");
+	preCacheItem("g36c_mp");
+	preCacheItem("mp5_mp");
+	preCacheItem("g3_mp");
+	preCacheItem("m1014_mp");
+	preCacheItem("m60e4_mp");
+	preCacheItem("uzi_mp");
+	preCacheItem("ak47_mp"); //weapon room
+	preCacheItem("deserteagle_mp");
+	preCacheItem("colt45_mp");
+	preCacheItem("defaultweapon_mp"); //pistol room
+	preCacheItem("rpg_mp"); //rpg room
 
 	thread startPlatform();
 
