@@ -423,6 +423,11 @@ miscData(id) {
 			case 11:
 			case 12:
 			case 13: //End Rooms
+				if (isDefined(level.freeRun) && level.freeRun && id == 11) { //Prevent old mayhem from being picked in freerun
+					player iPrintLnBold("^1This room doesn't work in freerun!");
+					continue;
+				}
+
 				if (isDefined(player.ghost) && player.ghost) {
 					player suicide();
 					continue;
