@@ -530,7 +530,32 @@ miscData(id) {
 						iPrintLnBold("Flashbang");
 						break;
 					case 9: //Simon says room
-						iPrintLnBold("Simon Says");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Simon Says");
+
+						spawnPoint = randomInt(2);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_9_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
+
+						ssGame(id, players, spawnSide, 2);
 						break;
 					case 10: //Bounce room
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Bounce");
@@ -934,6 +959,147 @@ roomDeathListener() {
 	}
 
 	self.roomOccupied = false;
+}
+
+ssGame(id, participants, spawnSide, spawnCount) { //Simon says end room game
+	self.ssGameColours = 9; //amount of platforms/colours
+	self.ssGameLength = 2; //initial amount of time in seconds players have to move
+	self.ssGameActive = true;
+
+	thread ssGameListener(id, participants, spawnSide, spawnCount); //Create listener to check if a player has failed
+
+	while ((self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) && self.ssGameActive) {
+		ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
+
+		randomColour = randomInt(self.ssGameColours);
+		ssGameSetColour(randomColour, "active"); //Show the colour to players
+
+		wait(self.ssGameLength); //wait x amount of time for players to get in position
+
+		if (!self.ssGameActive)
+			break;
+
+		ssGameSetColour(randomColour, "platform"); //Remove all platforms except the active colour
+
+		wait(2); //Wait for someone to die..
+
+		if (!self.ssGameActive)
+			break;
+
+		self.ssGameLength -= 0.2; //lessen the wait period between showing and removing
+
+		if (self.ssGameLength < 0 && self.ssGameActive) { //End the game as it has been going on to long
+			break;
+		}
+	}
+
+	wasActive = self.ssGameActive;
+	self.ssGameActive = false;
+
+	if (self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) { //check if the end fight is still active
+		if (wasActive) { //check if the game ended manually
+			//initiate a knife fight
+			ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
+
+			spawnPoint = randomInt(spawnCount);
+
+			for (player = 0; player < participants.size; player++) {
+				if (isDefined(participants[player])) {
+					spawn = getEnt("misc_" + id + "_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+					participants[player] setOrigin(spawn.origin);
+					participants[player] setPlayerAngles(spawn.angles);
+					participants[player] setNormalHealth(100);
+					participants[player] freezeControls(true);
+					participants[player] takeAllWeapons();
+					participants[player] giveWeapon("knife_mp");
+					participants[player] switchToWeapon("knife_mp");
+				}
+			}
+
+			for (side = 0; side < spawnSide.size; side++)
+				thread roomTeleportListener(id, side, spawnCount);
+
+			for (count = 3; count >= 0; count--) {							
+				for (player = 0; player < participants.size; player++) {
+					if (count != 0)
+						participants[player] iPrintLnBold("^" + count + "" + count);
+					else {
+						participants[player] iPrintLnBold("^5Fight!");
+						participants[player] freezeControls(false);
+					}
+				}
+				wait(1);
+			} //countdown
+		}
+	}
+	
+	if (!(self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) || wasActive)
+		self notify("ssGameOver");
+
+	ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
+	
+}
+
+ssGameSetColour(id, type) { //Hide/Show platforms
+	for (i = 0; i < self.ssGameColours; i++) {
+		colour = getEnt("ss_" + i + "_" + type, "targetname");
+
+		if (i != id && id != self.ssGameColours) {
+			colour hide();
+			if (type == "platform")
+				colour notSolid();
+		} else {
+			colour show();
+			if (type == "platform")
+				colour solid();			
+		}
+	}
+}
+
+ssGameListener(id, participants, spawnSide, spawnCount) { //Listen for player falling
+	while (self.ssGameActive) {
+		self endon("ssGameOver");
+		trigger = getEnt("ss_trigger", "targetname");
+		trigger waittill("trigger", loser);
+
+		if (self.ssGameActive) { //Freeze the loser, give the winner a weapon
+			self.ssGameActive = false;
+			ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
+
+			spawnPoint = randomInt(spawnCount);
+
+			for (side = 0; side < spawnSide.size; side++)
+				thread roomTeleportListener(id, side, spawnCount);
+
+			for (player = 0; player < participants.size; player++) {
+				if (isDefined(participants[player])) {
+					spawn = getEnt("misc_" + id + "_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+					participants[player] setOrigin(spawn.origin);
+					participants[player] setPlayerAngles(spawn.angles);
+					participants[player] setNormalHealth(100);
+					participants[player] freezeControls(true);
+					participants[player] takeAllWeapons();
+
+					if (participants[player] != loser) { //give the winner a weapon
+						participants[player] giveWeapon("knife_mp");
+						participants[player] switchToWeapon("knife_mp");
+					}
+				}
+			}
+
+			for (count = 3; count >= 0; count--) {							
+				for (player = 0; player < participants.size; player++) {
+					if (count != 0)
+						participants[player] iPrintLnBold("^" + count + "" + count);
+					else {
+						if (participants[player] != loser)
+							participants[player] freezeControls(false);
+					}
+				}
+				wait(1);
+			} //countdown
+		}
+	}
 }
 
 //Respect plugin
