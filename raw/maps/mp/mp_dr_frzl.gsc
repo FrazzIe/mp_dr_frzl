@@ -488,7 +488,32 @@ miscData(id) {
 						} //countdown
 						break;
 					case 5: //Nade room
-						iPrintLnBold("Nade");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Nade");
+
+						spawnPoint = randomInt(2);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_5_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("frag_grenade_mp");
+							players[player] switchToWeapon("frag_grenade_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 6: //RPG room
 						iPrintLnBold("RPG");
