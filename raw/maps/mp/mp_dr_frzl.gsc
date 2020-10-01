@@ -460,7 +460,66 @@ miscData(id) {
 						} //countdown
 						break;
 					case 3: //Weapon room
-						iPrintLnBold("Weapon");
+						iPrintLnBold("^1" + player.name + " ^7chose ^Weapon");
+
+						spawnPoint = randomInt(3);
+						randomWeapon = "saw_mp";
+						switch(randomInt(10)) {
+							case 0:
+								randomWeapon = "p90_mp";
+								break;
+							case 1:
+								randomWeapon = "m16_mp";
+								break;
+							case 2:
+								randomWeapon = "dragunov_mp";
+								break;
+							case 3:
+								randomWeapon = "g36c_mp";
+								break;
+							case 4:
+								randomWeapon = "mp5_mp";
+								break;
+							case 5:
+								randomWeapon = "g3_mp";
+								break;
+							case 6:
+								randomWeapon = "m1014_mp";
+								break;
+							case 7:
+								randomWeapon = "m60e4_mp";
+								break;
+							case 8:
+								randomWeapon = "uzi_mp";
+								break;
+							case 9:
+								randomWeapon = "ak47_mp";
+								break;
+						}
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_3_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon(randomWeapon);
+							players[player] giveMaxAmmo(randomWeapon);
+							players[player] switchToWeapon(randomWeapon);
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 4: //Knife room
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Knife");
@@ -519,10 +578,78 @@ miscData(id) {
 						} //countdown
 						break;
 					case 6: //RPG room
-						iPrintLnBold("RPG");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5RPG");
+
+						spawnPoint = randomInt(3);
+
+						for (side = 0; side < spawnSide.size; side++)
+							thread roomTeleportListener(2, side, 3);
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_2_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(200);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("knife_mp");
+							players[player] giveWeapon("rpg_mp");
+							players[player] giveMaxAmmo("rpg_mp");
+							players[player] switchToWeapon("rpg_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 7: //Pistol room
-						iPrintLnBold("Pistol");
+						iPrintLnBold("^1" + player.name + " ^7chose ^Pistol");
+
+						spawnPoint = randomInt(3);
+						randomWeapon = "deserteaglegold_mp";
+						switch(randomInt(3)) {
+							case 0:
+								randomWeapon = "deserteagle_mp";
+								break;
+							case 1:
+								randomWeapon = "colt45_mp";
+								break;
+							case 2:
+								randomWeapon = "defaultweapon_mp";
+								break;
+						}
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_3_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(100);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon(randomWeapon);
+							players[player] giveMaxAmmo(randomWeapon);
+							players[player] switchToWeapon(randomWeapon);
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Fight!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 8: //Flashbang room
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Flashbang");
