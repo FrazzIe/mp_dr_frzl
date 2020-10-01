@@ -15,6 +15,11 @@ main() {
 	self.miscCount = 17;
 	self.roomOccupied = false;
 
+	precacheItem("m40a3_mp");
+	precacheItem("remington700_mp");
+	precacheItem("knife_mp");
+	precacheItem("frag_grenade_mp");
+
 	thread startPlatform();
 
 	for (id = 0; id < self.trapCount; id++) {
