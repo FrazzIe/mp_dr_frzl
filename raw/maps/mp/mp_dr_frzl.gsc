@@ -34,6 +34,7 @@ main() {
 	preCacheItem("colt45_mp");
 	preCacheItem("defaultweapon_mp"); //pistol room
 	preCacheItem("rpg_mp"); //rpg room
+	preCacheItem("beretta_mp"); //old 1v1
 
 	thread startPlatform();
 	thread preventActivatorCamp();
