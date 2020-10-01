@@ -36,6 +36,7 @@ main() {
 	preCacheItem("rpg_mp"); //rpg room
 
 	thread startPlatform();
+	thread preventActivatorCamp();
 
 	for (id = 0; id < self.trapCount; id++) {
 		thread trapData(id);
@@ -237,6 +238,20 @@ startPlatform() {
 
 		wait(5);
 	}
+}
+
+//Prevent activator from camping at spawn
+preventActivatorCamp() {
+	level waittill("round_started");
+	wait(20);
+	trigger = getEnt("activator_camp_trigger", "targetname");
+	trigger waitill("trigger", player);
+
+	spawn = getEnt("activator_camp_spawn", "targetname");
+	player setOrigin(spawn.origin);
+	player setPlayerAngles(spawn.angles);
+	player iPrintLnBold("^1Camping up top doesn't work :)");
+	trigger delete();
 }
 
 //Trap functionality
