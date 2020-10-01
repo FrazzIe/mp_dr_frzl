@@ -14,6 +14,7 @@ main() {
 	self.activatedTraps = [];
 	self.miscCount = 21;
 	self.roomOccupied = false;
+	self.activatorDoor = false;
 
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp"); //sniper room
@@ -799,7 +800,8 @@ miscData(id) {
 							}
 						}
 						iPrintLnBold("Old 1v1");
-						activatorDoor(true);
+						if (!self.activatorDoor)
+							activatorDoor(true);
 						break;
 					case 13:
 						for (i = 0; i < 2; i++) {
@@ -1173,6 +1175,8 @@ activatorDoor(open) {
 	doorBottomLeft = getEnt("activator_door_bottom_left", "targetname");
 	doorBottomRight = getEnt("activator_door_bottom_right", "targetname");
 	doorBarrier = getEnt("activator_door_barrier", "targetname");
+
+	self.activatorDoor = open;
 
 	if (open) {
 		doorTop moveZ(98, 5);
