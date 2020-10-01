@@ -12,13 +12,14 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 17;
+	self.miscCount = 19;
 	self.roomOccupied = false;
 
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp");
 	precacheItem("knife_mp");
 	precacheItem("frag_grenade_mp");
+	preCacheItem("flash_grenade_mp");
 
 	thread startPlatform();
 
@@ -527,7 +528,32 @@ miscData(id) {
 						iPrintLnBold("Pistol");
 						break;
 					case 8: //Flashbang room
-						iPrintLnBold("Flashbang");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Flashbang");
+
+						spawnPoint = 0;
+
+						for (player = 0; player < players.size; player++) {
+							spawn = getEnt("misc_8_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
+							players[player] setOrigin(spawn.origin);
+							players[player] setPlayerAngles(spawn.angles);
+							players[player] setNormalHealth(1);
+							players[player] freezeControls(true);
+							players[player] takeAllWeapons();
+							players[player] giveWeapon("flash_grenade_mp");
+							players[player] switchToWeapon("flash_grenade_mp");
+						}
+
+						for (count = 3; count >= 0; count--) {							
+							for (player = 0; player < players.size; player++) {
+								if (count != 0)
+									players[player] iPrintLnBold("^" + count + "" + count);
+								else {
+									players[player] iPrintLnBold("^5Flash!");
+									players[player] freezeControls(false);
+								}
+							}
+							wait(1);
+						} //countdown
 						break;
 					case 9: //Simon says room
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Simon Says");
@@ -612,6 +638,20 @@ miscData(id) {
 					player giveMaxAmmo("frag_grenade_mp");
 				wait(1);
 				break;
+			case 17: //Flashbang room ammo replenishment
+				if (player.pers["team"] == "axis")
+					continue;
+				if (player hasWeapon("flash_grenade_mp"))
+					player giveMaxAmmo("flash_grenade_mp");
+				wait(1);
+				break;
+			case 18:
+				if (player.pers["team"] == "allies")
+					continue;
+				if (player hasWeapon("flash_grenade_mp"))
+					player giveMaxAmmo("flash_grenade_mp");
+				wait(1);
+				break;
 			default:
 				break;
 		}
@@ -619,7 +659,6 @@ miscData(id) {
 		wait(0.1);
 	}
 }
-
 
 roomTeleportListener(roomId, side, spawnCount) {
 	trigger = getEnt("misc_" + roomId + "_teleport_" + side, "targetname");
