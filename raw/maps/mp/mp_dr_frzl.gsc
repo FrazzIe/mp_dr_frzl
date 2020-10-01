@@ -1346,6 +1346,9 @@ respectPluginCheck(player, id) { //support for _respect plugin
 		return false;
 	}
 
+	if (level.inRoomPlugin)
+		return true;
+
 	player notify("romm_enter_plugin"); //stop the onQueueDeath check
 	level.inRoomPlugin = true;
 	player thread respectPluginOnRoomDeath();
