@@ -778,6 +778,7 @@ miscData(id) {
 					case 11: //Old room (Mayhem)
 						iPrintLnBold("Old Mayhem");
 					case 12: //Old room (1v1)
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Old ^7(^21 ^7vs ^11^7)");
 						for (player = 0; player < players.size; player++) {
 							players[player] setNormalHealth(100);
 
@@ -799,7 +800,6 @@ miscData(id) {
 								}
 							}
 						}
-						iPrintLnBold("Old 1v1");
 						if (!self.activatorDoor)
 							activatorDoor(true);
 						thread oldBlacklistListener();
@@ -808,7 +808,7 @@ miscData(id) {
 						for (i = 0; i < 2; i++) {
 							player.health += 160;
 							player finishPlayerDamage(player, player, 160, 0, "MOD_FALLING", "jump_mp", player.origin, AnglesToForward((0, 90, 0)), "head", 0);
-						}
+						} //force player in the activator area
 						wait(0.1);
 						activatorDoor(false);
 						break;
