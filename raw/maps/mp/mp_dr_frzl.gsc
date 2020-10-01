@@ -246,7 +246,7 @@ preventActivatorCamp() {
 	level waittill("round_started");
 	wait(20);
 	trigger = getEnt("activator_camp_trigger", "targetname");
-	trigger waitill("trigger", player);
+	trigger waittill("trigger", player);
 
 	spawn = getEnt("activator_camp_spawn", "targetname");
 	player setOrigin(spawn.origin);
@@ -785,12 +785,12 @@ miscData(id) {
 								players[player] takeAllWeapons();
 								players[player] giveWeapon("knife_mp");
 							} else {
-								if (players[player] hasWeapon("raygun_mp") { //remove raygun
+								if (players[player] hasWeapon("raygun_mp")) { //remove raygun
 									players[player] takeWeapon("raygun_mp");
 									players[player] giveWeapon("beretta_mp");
 								}
 
-								if (isDefined(level.dvar["vipWeapon"]) && players[player] hasWeapon(level.dvar["vipWeapon"]) { //remove vip weapon
+								if (isDefined(level.dvar["vipWeapon"]) && players[player] hasWeapon(level.dvar["vipWeapon"])) { //remove vip weapon
 									players[player] takeWeapon(level.dvar["vipWeapon"]);
 									players[player] giveWeapon("beretta_mp");
 								}
