@@ -474,7 +474,7 @@ miscData(id) {
 						} //countdown
 						break;
 					case 3: //Weapon room
-						iPrintLnBold("^1" + player.name + " ^7chose ^Weapon");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Weapon");
 
 						spawnPoint = randomInt(3);
 						randomWeapon = "saw_mp";
@@ -518,6 +518,7 @@ miscData(id) {
 							players[player] setNormalHealth(100);
 							players[player] freezeControls(true);
 							players[player] takeAllWeapons();
+							players[player] giveWeapon("knife_mp");
 							players[player] giveWeapon(randomWeapon);
 							players[player] giveMaxAmmo(randomWeapon);
 							players[player] switchToWeapon(randomWeapon);
@@ -625,7 +626,7 @@ miscData(id) {
 						} //countdown
 						break;
 					case 7: //Pistol room
-						iPrintLnBold("^1" + player.name + " ^7chose ^Pistol");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Pistol");
 
 						spawnPoint = randomInt(3);
 						randomWeapon = "deserteaglegold_mp";
@@ -648,6 +649,7 @@ miscData(id) {
 							players[player] setNormalHealth(100);
 							players[player] freezeControls(true);
 							players[player] takeAllWeapons();
+							players[player] giveWeapon("knife_mp");
 							players[player] giveWeapon(randomWeapon);
 							players[player] giveMaxAmmo(randomWeapon);
 							players[player] switchToWeapon(randomWeapon);
