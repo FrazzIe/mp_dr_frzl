@@ -777,7 +777,6 @@ miscData(id) {
 					case 11: //Old room (Mayhem)
 						iPrintLnBold("Old Mayhem");
 					case 12: //Old room (1v1)
-					case 13:
 						for (player = 0; player < players.size; player++) {
 							players[player] setNormalHealth(100);
 
@@ -801,6 +800,14 @@ miscData(id) {
 						}
 						iPrintLnBold("Old 1v1");
 						activatorDoor(true);
+						break;
+					case 13:
+						for (i = 0; i < 2; i++) {
+							player.health += 160;
+							player finishPlayerDamage(player, player, 160, 0, "MOD_FALLING", "jump_mp", player.origin, AnglesToForward((0, 90, 0)), "head", 0);
+						}
+						wait(0.1);
+						activatorDoor(false);
 						break;
 					default:
 						break;
