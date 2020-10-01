@@ -24590,3 +24590,17 @@ iwmap 4
 "angles" "0 270 0"
 "classname" "script_origin"
 }
+// entity 597
+{
+"targetname" "old_blacklist_trigger"
+"classname" "trigger_multiple"
+// brush 0
+{
+ ( -3662 -305 -749 ) ( -3664 -305 -749 ) ( -3664 -307 -749 ) trigger 64 64 0 14 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3666 -307 -651 ) ( -3666 -305 -651 ) ( -3664 -305 -651 ) trigger 64 64 0 14 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3664 -307 -679 ) ( -3662 -307 -679 ) ( -3662 -307 -687 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3504 -309 -679 ) ( -3504 -307 -679 ) ( -3504 -307 -687 ) trigger 64 64 -14 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3662 -305 -679 ) ( -3664 -305 -679 ) ( -3664 -305 -687 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -3664 -305 -679 ) ( -3664 -307 -679 ) ( -3664 -307 -687 ) trigger 64 64 -14 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}

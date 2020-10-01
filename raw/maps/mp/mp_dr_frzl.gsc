@@ -802,6 +802,7 @@ miscData(id) {
 						iPrintLnBold("Old 1v1");
 						if (!self.activatorDoor)
 							activatorDoor(true);
+						thread oldBlacklistListener();
 						break;
 					case 13:
 						for (i = 0; i < 2; i++) {
@@ -874,6 +875,23 @@ roomTeleportListener(roomId, side, spawnCount) {
 			player setOrigin(spawn.origin);
 			player setPlayerAngles(spawn.angles);
 		};
+}
+
+oldBlacklistListener() { //Remove vip and raygun when entering old
+	trigger = getEnt("old_blacklist_trigger", "targetname");
+	trigger waittill("trigger", player);
+
+	if (player hasWeapon("raygun_mp")) { //remove raygun
+		player takeWeapon("raygun_mp");
+		player giveWeapon("beretta_mp");
+		player switchToWeapon("beretta_mp");
+	}
+
+	if (isDefined(level.dvar["vipWeapon"]) && player hasWeapon(level.dvar["vipWeapon"])) { //remove vip weapon
+		player takeWeapon(level.dvar["vipWeapon"]);
+		player giveWeapon("beretta_mp");
+		player switchToWeapon("beretta_mp");
+	}
 }
 
 //trigger_once passive trap, variation of "Tip Toe" from Fall Guys
