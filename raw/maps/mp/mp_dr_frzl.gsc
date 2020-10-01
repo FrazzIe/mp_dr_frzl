@@ -778,7 +778,29 @@ miscData(id) {
 						} //countdown
 						break;
 					case 11: //Old room (Mayhem)
-						iPrintLnBold("Old Mayhem");
+						iPrintLnBold("^1" + player.name + " ^7chose ^5Old ^7(^2Jumpers ^7vs ^1Activator^7)");
+						for (room = 2; room < 14; room++) {
+							trigger = getEnt("misc_" + room + "_trigger", "targetname");
+							trigger delete();
+						} //delete room triggers
+
+						trigger = getEnt("misc_20_trigger", "targetname");
+						trigger delete(); //remove activator barrier
+
+						if (isDefined(players[1])) {
+							spawn = getEnt("activator_camp_spawn", "targetname");
+							players[1] setOrigin(spawn.origin);
+							players[1] setPlayerAngles(spawn.angles);
+							players[1] setNormalHealth(200);
+							players[1] takeAllWeapons();
+							players[1] giveWeapon("knife_mp");
+							players[1] switchToWeapon("knife_mp");
+							players[1] iPrintLnBold("^1Grab a weapon and slaughter the jumpers!");
+						} //move activator to safe area
+
+						thread oldBlacklistListener();
+
+						activatorDoor(true);
 					case 12: //Old room (1v1)
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Old ^7(^21 ^7vs ^11^7)");
 						for (player = 0; player < players.size; player++) {
