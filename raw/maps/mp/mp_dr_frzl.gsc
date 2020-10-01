@@ -12,7 +12,7 @@ main() {
 	self.trapCount = 8;
 	level.trapTriggers = [];
 	self.activatedTraps = [];
-	self.miscCount = 20;
+	self.miscCount = 21;
 	self.roomOccupied = false;
 
 	precacheItem("m40a3_mp");
@@ -845,6 +845,13 @@ miscData(id) {
 				if (player hasWeapon("rpg_mp"))
 					player giveMaxAmmo("rpg_mp");
 				wait(1);
+				break;
+			case 20:
+				if (player.pers["team"] == "allies")
+					continue;
+				spawn = getEnt("misc_20_spawn", "targetname");
+				player setOrigin(spawn.origin);
+				player setPlayerAngles(spawn.angles);
 				break;
 			default:
 				break;
