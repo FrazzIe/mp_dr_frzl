@@ -785,14 +785,14 @@ miscData(id) {
 								players[player] takeAllWeapons();
 								players[player] giveWeapon("knife_mp");
 							} else {
-								if (player hasWeapon("raygun_mp") { //remove raygun
-									player takeWeapon("raygun_mp");
-									player giveWeapon("beretta_mp");
+								if (players[player] hasWeapon("raygun_mp") { //remove raygun
+									players[player] takeWeapon("raygun_mp");
+									players[player] giveWeapon("beretta_mp");
 								}
 
-								if (isDefined(level.dvar["vipWeapon"]) && player hasWeapon(level.dvar["vipWeapon"]) { //remove vip weapon
-									player takeWeapon(level.dvar["vipWeapon"]);
-									player giveWeapon("beretta_mp");
+								if (isDefined(level.dvar["vipWeapon"]) && players[player] hasWeapon(level.dvar["vipWeapon"]) { //remove vip weapon
+									players[player] takeWeapon(level.dvar["vipWeapon"]);
+									players[player] giveWeapon("beretta_mp");
 								}
 							}
 						}
