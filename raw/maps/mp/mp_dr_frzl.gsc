@@ -1159,6 +1159,7 @@ activatorDoor(open) {
 
 	if (open) {
 		doorTop moveZ(98, 5);
+		wait(1.5);
 		doorBottom moveZ(-41, 2.5);
 		wait(2.5);
 		doorBottomLeft moveX(80, 1);
@@ -1166,13 +1167,13 @@ activatorDoor(open) {
 		wait(1);
 		doorBarrier notSolid();
 	} else {
+		doorBarrier solid();
+		doorTop moveZ(-98, 5);
 		doorBottomLeft moveX(-80, 1);
 		doorBottomRight moveX(80, 1);
-		doorTop moveZ(-98, 5);
-		wait(2.5);
+		wait(1);		
 		doorBottom moveZ(41, 2.5);
-		wait(1);
-		doorBarrier solid();
+		wait(4);
 	}
 }
 
