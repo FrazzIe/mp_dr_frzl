@@ -784,15 +784,18 @@ miscData(id) {
 							if (isDefined(level.freeRun) && level.freeRun) { //remove weapons if freerun
 								players[player] takeAllWeapons();
 								players[player] giveWeapon("knife_mp");
+								players[player] switchToWeapon("knife_mp");
 							} else {
 								if (players[player] hasWeapon("raygun_mp")) { //remove raygun
 									players[player] takeWeapon("raygun_mp");
 									players[player] giveWeapon("beretta_mp");
+									players[player] switchToWeapon("beretta_mp");
 								}
 
 								if (isDefined(level.dvar["vipWeapon"]) && players[player] hasWeapon(level.dvar["vipWeapon"])) { //remove vip weapon
 									players[player] takeWeapon(level.dvar["vipWeapon"]);
 									players[player] giveWeapon("beretta_mp");
+									players[player] switchToWeapon("beretta_mp");
 								}
 							}
 						}
