@@ -445,6 +445,8 @@ miscData(id) {
 					continue;
 
 				if (!(isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin)) { //check if respect plugin is disabled
+					if (id == 13) //don't close activator door if respect plugin is disabled
+						continue;
 					self.roomOccupied = true;
 					player thread roomDeathListener();
 				}
