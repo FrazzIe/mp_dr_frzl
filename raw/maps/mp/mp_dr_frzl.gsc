@@ -465,10 +465,7 @@ miscData(id) {
 					case 4: //Knife room
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Knife");
 
-						spawnPoint = randomInt(2);
-
-						for (side = 0; side < spawnSide.size; side++)
-							thread roomTeleportListener(id, side, 2);
+						spawnPoint = randomInt(3);
 
 						for (player = 0; player < players.size; player++) {
 							spawn = getEnt("misc_4_spawn_" + spawnSide[player] + "_" + spawnPoint, "targetname");
