@@ -13,7 +13,7 @@ main() {
 	level.roomOccupied = false;
 	self.activatedTraps = [];
 	self.trapCount = 8;
-	self.miscCount = 21;
+	self.miscCount = 30;
 	self.activatorDoor = false;
 
 	precacheItem("m40a3_mp");
@@ -36,6 +36,8 @@ main() {
 	preCacheItem("defaultweapon_mp"); //pistol room
 	preCacheItem("rpg_mp"); //rpg room
 	preCacheItem("beretta_mp"); //old 1v1
+	preCacheItem("mp44_mp");
+	preCacheItem("ak74u_mp"); //armoury
 
 	thread startPlatform();
 	thread preventActivatorCamp();
@@ -879,6 +881,50 @@ miscData(id) {
 				spawn = getEnt("misc_20_spawn", "targetname");
 				player setOrigin(spawn.origin);
 				player setPlayerAngles(spawn.angles);
+				break;
+			case 21:
+			case 22:
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+			case 28:
+			case 29: //Armoury weapons
+				weapon = "beretta_mp";
+				switch (id) {
+					case 21:
+						weapon = "g3_mp";
+						break;
+					case 22:
+						weapon = "m1014_mp";
+						break;
+					case 23:
+						weapon = "mp5_mp";
+						break;
+					case 24:
+						weapon = "mp44_mp";
+						break;
+					case 25:
+						weapon = "ak74u_mp";
+						break;
+					case 26:
+						weapon = "m16_mp";
+						break;
+					case 27:
+						weapon = "remington700_mp";
+						break;
+					case 28:
+						weapon = "dragunov_mp";
+						break;
+					case 29:
+						weapon = "m40a3_mp";
+						break;		
+				}
+
+				player giveWeapon(weapon);
+				player giveMaxAmmo(weapon);
+				player switchToWeapon(weapon);
 				break;
 			default:
 				break;
