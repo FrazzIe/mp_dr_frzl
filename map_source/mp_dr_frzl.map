@@ -24668,7 +24668,7 @@ iwmap 4
 // entity 593
 {
 "targetname" "activator_camp_spawn"
-"origin" "675.5 413.5 -706.0"
+"origin" "675.5 401.5 -706.0"
 "angles" "0 180 0"
 "classname" "script_origin"
 }
