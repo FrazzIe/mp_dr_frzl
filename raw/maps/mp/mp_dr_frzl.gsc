@@ -802,7 +802,13 @@ miscData(id) {
 
 						thread oldBlacklistListener();
 
+						doorTop = getEnt("armoury_door_top", "targetname");
+						doorBottom = getEnt("armoury_door_bottom", "targetname");
+
+						doorTop moveZ(45, 3);
+						doorBottom moveZ(-45, 3);
 						activatorDoor(true);
+						break;
 					case 12: //Old room (1v1)
 						iPrintLnBold("^1" + player.name + " ^7chose ^5Old ^7(^21 ^7vs ^11^7)");
 						for (player = 0; player < players.size; player++) {
