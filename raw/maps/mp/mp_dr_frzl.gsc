@@ -9,11 +9,11 @@ main() {
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	self.trapCount = 8;
 	level.trapTriggers = [];
+	level.roomOccupied = false;
 	self.activatedTraps = [];
+	self.trapCount = 8;
 	self.miscCount = 21;
-	self.roomOccupied = false;
 	self.activatorDoor = false;
 
 	precacheItem("m40a3_mp");
@@ -441,13 +441,13 @@ miscData(id) {
 				if (isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin) { //check if respect plugin is enabled
 					if (!respectPluginCheck(player, id))
 						continue;
-				} else if (self.roomOccupied)
+				} else if (level.roomOccupied)
 					continue;
 
 				if (!(isDefined(level.disableRoomPlugin) && !level.disableRoomPlugin)) { //check if respect plugin is disabled
 					if (id == 13) //don't close activator door if respect plugin is disabled
 						continue;
-					self.roomOccupied = true;
+					level.roomOccupied = true;
 					player thread roomDeathListener();
 				}
 
@@ -888,11 +888,11 @@ miscData(id) {
 	}
 }
 
-roomTeleportListener(roomId, side, spawnCount) {
+roomTeleportListener(roomId, side, spawnCount) { //teleport players who fall to a revelvant spawn point
 	trigger = getEnt("misc_" + roomId + "_teleport_" + side, "targetname");
 
 	if (isDefined(trigger))
-		while(self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) {
+		while(level.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) {
 			trigger waittill("trigger", player);
 			spawnPoint = randomInt(spawnCount);
 			spawn = getEnt("misc_" + roomId + "_spawn_" + side + "_" + spawnPoint, "targetname");
@@ -1211,7 +1211,7 @@ asciiGameMatch(passwordA, passwordB) { //Check if two ascii decimal arrays match
 	return true;
 }
 
-activatorDoor(open) {
+activatorDoor(open) { //toggle opening and closing of activator door
 	doorTop = getEnt("activator_door_top", "targetname");
 	doorBottom = getEnt("activator_door_bottom", "targetname");
 	doorBottomLeft = getEnt("activator_door_bottom_left", "targetname");
@@ -1240,14 +1240,6 @@ activatorDoor(open) {
 	}
 }
 
-roomDeathListener() {
-	while (isDefined(self) && isAlive(self)) {
-		wait(0.1);
-	}
-
-	self.roomOccupied = false;
-}
-
 ssGame(id, participants, spawnSide, spawnCount) { //Simon says end room game
 	self.ssGameColours = 9; //amount of platforms/colours
 	self.ssGameLength = 2; //initial amount of time in seconds players have to move
@@ -1255,7 +1247,7 @@ ssGame(id, participants, spawnSide, spawnCount) { //Simon says end room game
 
 	thread ssGameListener(id, participants, spawnSide, spawnCount); //Create listener to check if a player has failed
 
-	while ((self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) && self.ssGameActive) {
+	while ((level.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) && self.ssGameActive) {
 		ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
 
 		randomColour = randomInt(self.ssGameColours);
@@ -1283,7 +1275,7 @@ ssGame(id, participants, spawnSide, spawnCount) { //Simon says end room game
 	wasActive = self.ssGameActive;
 	self.ssGameActive = false;
 
-	if (self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) { //check if the end fight is still active
+	if (level.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) { //check if the end fight is still active
 		if (wasActive) { //check if the game ended manually
 			//initiate a knife fight
 			ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
@@ -1320,7 +1312,7 @@ ssGame(id, participants, spawnSide, spawnCount) { //Simon says end room game
 		}
 	}
 	
-	if (!(self.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) || wasActive)
+	if (!(level.roomOccupied || (isDefined(level.inRoomPlugin) && level.inRoomPlugin)) || wasActive)
 		self notify("ssGameOver");
 
 	ssGameSetColour(self.ssGameColours, "platform"); //Reset platforms
@@ -1387,6 +1379,14 @@ ssGameListener(id, participants, spawnSide, spawnCount) { //Listen for player fa
 			} //countdown
 		}
 	}
+}
+
+roomDeathListener() { //listen for player death in end room
+	while (isDefined(self) && isAlive(self)) {
+		wait(0.1);
+	}
+
+	level.roomOccupied = false;
 }
 
 //Respect plugin
