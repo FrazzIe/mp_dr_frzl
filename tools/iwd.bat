@@ -55,7 +55,7 @@ CALL "%zip_dir%\7z" a %map_name%.iwd "%create_dir%%map_name%\*"
 rmdir /S /Q "%create_dir%%map_name%"
 
 GOTO :end 
-w
+
 :compileTexture
 SET assetName=%~1
 SET assetType=%~2
