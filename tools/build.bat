@@ -45,8 +45,8 @@ robocopy "%git_zone_src_dir%" "%zone_src_dir%" %map_name%.csv %map_name%_load.cs
 
 CALL "%tools_dir%\cod4compiletools_compilebsp.bat" "%bsp_dir%\" "%map_dir%\" "%game_dir%\" %map_name% - -extra 1 1 1
 CALL "%tools_dir%\cod4compiletools_reflections.bat" "%game_dir%\" %map_name% 1
-CALL "%~dp0\ff.bat"
-CALL "%~dp0\iwd.bat"
+CALL "%~dp0ff.bat"
+CALL "%~dp0iwd.bat"
 
 IF EXIST "%map_dir%\%map_name%.map" del "%map_dir%\%map_name%.map"
 
