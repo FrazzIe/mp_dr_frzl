@@ -13,7 +13,7 @@ main() {
 	level.roomOccupied = false;
 	self.activatedTraps = [];
 	self.trapCount = 8;
-	self.miscCount = 30;
+	self.miscCount = 33;
 	self.activatorDoor = false;
 
 	precacheItem("m40a3_mp");
@@ -38,6 +38,10 @@ main() {
 	preCacheItem("beretta_mp"); //old 1v1
 	preCacheItem("mp44_mp");
 	preCacheItem("ak74u_mp"); //armoury
+	preCacheItem("ice_pick_mp"); //Created by Mist
+	preCacheItem("dischord_mp"); //Created by VC'Fox, secret weapons
+	preCacheModel("playermodel_kermit_the_frog");
+	preCacheModel("viewhands_kermit"); //Created by VC'Fox, secret model
 
 	thread startPlatform();
 	thread preventActivatorCamp();
@@ -897,6 +901,8 @@ miscData(id) {
 			case 27:
 			case 28:
 			case 29: //Armoury weapons
+			case 30:
+			case 31: //Addon weapons
 				weapon = "beretta_mp";
 				switch (id) {
 					case 21:
@@ -925,12 +931,22 @@ miscData(id) {
 						break;
 					case 29:
 						weapon = "m40a3_mp";
-						break;		
+						break;
+					case 30:
+						weapon = "ice_pick_mp"; //Created by VC'Fox
+						break;
+					case 31:
+						weapon = "dischord_mp"; //Created by Mist
+						break;				
 				}
 
 				player giveWeapon(weapon);
 				player giveMaxAmmo(weapon);
 				player switchToWeapon(weapon);
+				break;
+			case 32:
+				player setModel("playermodel_kermit_the_frog");
+				player setViewModel("viewhands_kermit"); //Created by VC'Fox
 				break;
 			default:
 				break;
