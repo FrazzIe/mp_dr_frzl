@@ -3,6 +3,7 @@
 set /p game_dir=<game_directory.txt
 set /p map_name=<map_name.txt
 set bin_dir=%game_dir%\bin
+set zone_dir=%game_dir%\zone\english
 set zone_src_dir=%game_dir%\zone_source
 set output_dir=%~dp0..\output
 set raw_dir=%game_dir%\raw
