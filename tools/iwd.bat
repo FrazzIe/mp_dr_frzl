@@ -75,6 +75,10 @@ IF NOT assetName == 0 (
      copy "%~dp0..\%colorMap%" "%game_dir%\%colorMap%"
 
      CALL "%bin_dir%\converter" -nocachedownload -single %assetType% "%assetName%"
+
+     IF EXIST "%image_dir%\%assetName%.iwi" (
+      robocopy "%image_dir%" "%git_raw_dir%\images" %assetName%.iwi
+     )
     )
   )
  )
