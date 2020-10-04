@@ -16,6 +16,7 @@ set git_texture_src=%~dp0..\texture_src
 set git_raw_dir=%~dp0..\raw
 
 IF EXIST "%create_dir%%map_name%" rmdir /S /Q "%create_dir%%map_name%"
+IF EXIST "%output_dir%\%map_name%.iwd" del "%output_dir%\%map_name%.iwd"
 
 mkdir "%create_dir%%map_name%"
 cd "%create_dir%%map_name%"
@@ -51,7 +52,7 @@ robocopy "%git_raw_dir%\sound" "%create_dir%%map_name%\sound" /E
 robocopy "%git_raw_dir%\weapons" "%create_dir%%map_name%\weapons" /E
 
 cd "%output_dir%"
-CALL "%zip_dir%\7z" a %map_name%.iwd "%create_dir%%map_name%\*"
+CALL "%zip_dir%\7z" -tzip a %map_name%.iwd "%create_dir%%map_name%\*"
 rmdir /S /Q "%create_dir%%map_name%"
 
 GOTO :end 
