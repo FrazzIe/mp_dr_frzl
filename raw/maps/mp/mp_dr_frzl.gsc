@@ -13,9 +13,11 @@ main() {
 	level.roomOccupied = false;
 	self.activatedTraps = [];
 	self.trapCount = 8;
-	self.miscCount = 33;
+	self.miscCount = 34;
 	self.activatorDoor = false;
 	self.messages = "Created by Frazzle.;This map can be found on GitHub @Frazzle;Discord: frazzle#6627;Report any bugs found to the GitHub repository";
+	self.secretReward = 1000; //Amount of XP to be awarded when secret is finished (Only 1st person gets the max reward)
+	self.secretRewardOffset = 250; //Amount of XP to be subtracted from the secret reward on completion
 
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp"); //sniper room
@@ -962,6 +964,16 @@ miscData(id) {
 			case 32:
 				player setModel("playermodel_kermit_the_frog");
 				player setViewModel("viewhands_kermit"); //Created by VC'Fox
+				break;
+			case 33: //Secret finish trigger
+				if (self.secretReward <= 0) //skip if xp reward has been used up
+					continue;
+				if (isDefined(player.pers["secret"]) && player.pers["secret"]) //skip if player has already finished
+					continue;
+				player braxi\_rank::giveRankXP(undefined, self.secretReward); //give player xp
+				player iPrintLnBold("You got ^1" + self.secretReward + "^3XP ^7 for completing the secret!"); //notify player
+				player.pers["secret"] = true; //set player has finished secret
+				self.secretReward -= self.secretRewardOffset; //decrease reward amount
 				break;
 			default:
 				break;
