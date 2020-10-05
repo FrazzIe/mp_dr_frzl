@@ -276,7 +276,7 @@ timedMessages() {
 		count++;
 		if (count >= messages.size)
 			count = 0;
-		wait(5);
+		wait(10);
 	}
 }
 //Trap functionality
@@ -961,7 +961,7 @@ miscData(id) {
 				player giveMaxAmmo(weapon);
 				player switchToWeapon(weapon);
 				break;
-			case 32:
+			case 32: //Addon model
 				player setModel("playermodel_kermit_the_frog");
 				player setViewModel("viewhands_kermit"); //Created by VC'Fox
 				break;
