@@ -15,6 +15,7 @@ main() {
 	self.trapCount = 8;
 	self.miscCount = 33;
 	self.activatorDoor = false;
+	self.messages = "Created by Frazzle.;This map can be found on GitHub @Frazzle;Discord: frazzle#6627;Report any bugs found to the GitHub repository";
 
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp"); //sniper room
@@ -45,6 +46,7 @@ main() {
 
 	thread startPlatform();
 	thread preventActivatorCamp();
+	thread timedMessages();
 
 	for (id = 0; id < self.trapCount; id++) {
 		thread trapData(id);
@@ -262,6 +264,19 @@ preventActivatorCamp() {
 	trigger delete();
 }
 
+//Timed informative messages/credits
+timedMessages() {
+	count = 0;
+	messages = strTok(self.messages, ";");
+
+	while (true) {
+		iPrintLn("^1>> ^7" + messages[count]);
+		count++;
+		if (count >= messages.size)
+			count = 0;
+		wait(5);
+	}
+}
 //Trap functionality
 trapData(id) {
 	self.activatedTraps[id] = false;
