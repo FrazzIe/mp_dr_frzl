@@ -13,7 +13,7 @@ main() {
 	level.roomOccupied = false;
 	self.activatedTraps = [];
 	self.trapCount = 8;
-	self.miscCount = 34;
+	self.miscCount = 35;
 	self.activatorDoor = false;
 	self.messages = "Created by Frazzle.;This map can be found on GitHub @Frazzle;Discord: frazzle#6627;Report any bugs found to the GitHub repository";
 	self.secretReward = 1000; //Amount of XP to be awarded when secret is finished (Only 1st person gets the max reward)
@@ -45,6 +45,8 @@ main() {
 	preCacheItem("dischord_mp"); //Created by VC'Fox, secret weapons
 	preCacheModel("playermodel_kermit_the_frog");
 	preCacheModel("viewhands_kermit"); //Created by VC'Fox, secret model
+	preCacheMenu("frzl_music");
+	preCacheMenu("frzl_music_main"); //Custom music menu
 
 	thread startPlatform();
 	thread preventActivatorCamp();
@@ -974,6 +976,22 @@ miscData(id) {
 				player iPrintLnBold("You got ^1" + self.secretReward + "^3XP ^7 for completing the secret!"); //notify player
 				player.pers["secret"] = true; //set player has finished secret
 				self.secretReward -= self.secretRewardOffset; //decrease reward amount
+				break;
+			case 34: //Music selection
+				player openMenu("frzl_music_main");
+				player waittill("menuresponse", menu, response);
+
+				if (menu == "frzl_music_main")
+					switch(response) {
+						case "1":
+						case "2":
+						case "3":
+						case "4":
+						case "5":
+							ambientPlay("frzl_music_" + response);
+							miscTrigger delete();
+							break;
+					};
 				break;
 			default:
 				break;

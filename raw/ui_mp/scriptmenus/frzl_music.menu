@@ -1,0 +1,105 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_SIZE_X			150
+#define CHOICE_SIZE_Y			22
+
+#define CHOICE_X_START			0
+#define CHOICE_Y_START			204//180
+
+#include "ui_mp/menustyle.inc"
+//#include "ui_mp/choices_setup_teams.menu"
+#include "ui/choices_setup_common.menu"
+
+{
+	menuDef
+	{
+		name			"frzl_music_main"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		onEsc
+		{
+			close self;
+		}
+		onOpen
+		{
+			//focusFirst;
+			setfocus "frzl_music_1";
+		}
+		onClose
+		{
+			scriptMenuResponse "close";
+		}
+		
+		#ifndef PC
+		execkeyint BUTTON_START
+		{
+			close self;
+		}
+		#endif
+		
+		// background overlay
+		itemDef	{
+			style			WINDOW_STYLE_FILLED
+			rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+			backcolor		0 0 0 0.75 //0 0.05 0.15 0.5
+			visible			1
+			decoration
+		}
+		// gradient_top
+		itemDef	{
+			style			WINDOW_STYLE_SHADER
+			rect			0 0 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+			background		"gradient_top"
+			visible			1
+			decoration
+		}
+		// gradient_bottom
+		itemDef	{
+			style			WINDOW_STYLE_SHADER
+			rect			0 405 854 75 HORIZONTAL_ALIGN_FULLSCREEN 0
+			background		"gradient_bottom"
+			visible			1
+			decoration
+		}
+
+		
+		// ------------------ TREE TITLE ------------------
+		
+		CHOICE_MENU_TITLE( "@FRZL_MUSIC_TITLE" )
+
+		
+		// ------------------ buttons ---------------------
+		#define BACK_OPEN	;
+		#include "ui_mp/navcontrols.inc"
+		
+		//=========================================================
+		//===================== MENU SELECTION ====================
+		//=========================================================
+
+		// PC widescreen fix
+		#ifdef PC
+			#undef  CHOICE_X_START
+			#define CHOICE_X_START	-320
+			
+			#undef	CHOICE_HORIZONTAL_ALIGN
+			#define CHOICE_HORIZONTAL_ALIGN HORIZONTAL_ALIGN_CENTER
+		#endif
+
+		// Music Image
+		#include "ui_mp/frzl_music_info.inc"
+		
+		MUSIC_INFO("frzl_music_" + localVarInt( ui_highlight ), localVarInt(frzl_highlight))
+		
+		//CHOICE_BUTTON_FOCUS_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
+		//Menu buttons
+		CHOICE_BUTTON_FOCUS_VIS_EX( 1, "@FRZL_MUSIC_1", scriptMenuResponse "1"; close self;, setLocalVarInt frzl_highlight 1;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_1" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 2, "@FRZL_MUSIC_2", scriptMenuResponse "2"; close self;, setLocalVarInt frzl_highlight 2;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_2" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "@FRZL_MUSIC_3", scriptMenuResponse "3"; close self;, setLocalVarInt frzl_highlight 3;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_3" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 4, "@FRZL_MUSIC_4", scriptMenuResponse "4"; close self;, setLocalVarInt frzl_highlight 4;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_4" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 5, "@FRZL_MUSIC_5", scriptMenuResponse "5"; close self;, setLocalVarInt frzl_highlight 5;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_5" )
+	}
+}

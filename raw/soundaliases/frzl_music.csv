@@ -1,0 +1,9 @@
+name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage,center percentage,platform,envelop_min,envelop_max,envelop percentage
+
+# FRZL_MUSIC
+
+frzl_music_1,,frzl_music/1.mp3,1,,ambience,,,,,ambient,streamed,,looping,0.5,all_mp,,,,,,,,,,,,,
+frzl_music_2,,frzl_music/2.mp3,1,,ambience,,,,,ambient,streamed,,looping,0.5,all_mp,,,,,,,,,,,,,
+frzl_music_3,,frzl_music/3.mp3,1,,ambience,,,,,ambient,streamed,,looping,0.5,all_mp,,,,,,,,,,,,,
+frzl_music_4,,frzl_music/4.mp3,1,,ambience,,,,,ambient,streamed,,looping,0.5,all_mp,,,,,,,,,,,,,
+frzl_music_5,,frzl_music/5.mp3,1,,ambience,1.25,,,,ambient,streamed,,looping,0.5,all_mp,,,,,,,,,,,,,
