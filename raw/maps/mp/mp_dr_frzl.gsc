@@ -63,7 +63,6 @@ main() {
 	createPlatformGame();
 	createPasswordGame();
 	asciiGame();
-	activatorAreaProps(false);
 }
 
 trapAnim(target) {
