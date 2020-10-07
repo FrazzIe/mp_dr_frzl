@@ -43,6 +43,10 @@ robocopy "%git_map_dir%" "%map_dir%" %map_name%.map
 robocopy "%git_bsp_dir%" "%bsp_dir%" %map_name%.d3dbsp %map_name%.gsc
 robocopy "%git_zone_src_dir%" "%zone_src_dir%" %map_name%.csv %map_name%_load.csv
 
+IF EXIST "%git_map_dir%\prefabs" (
+ robocopy "%git_map_dir%\prefabs" "%map_dir%\prefabs" /E
+)
+
 CALL "%tools_dir%\cod4compiletools_compilebsp.bat" "%bsp_dir%\" "%map_dir%\" "%game_dir%\" %map_name% - -extra 1 1 1
 CALL "%tools_dir%\cod4compiletools_reflections.bat" "%game_dir%\" %map_name% 1
 
