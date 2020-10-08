@@ -24,27 +24,10 @@ cd "%create_dir%%map_name%"
 
 FOR /F "tokens=1-2* delims=," %%A IN (%git_zone_src%\%map_name%.csv) DO (
  IF "%%~A" == "image" (
-  SET assetType=0
-  SET colorMap=0
-
-  FOR /F tokens^=2-4delims^=^<^"^= %%A IN (%git_source_data%\%%~B.gdt) DO (
-   IF NOT "%%~A" == "" (
-	   IF NOT "%%~C" == "" (
-      SET value=%%~C
-	    SET extension="!value:.gdf=!"
-
-	    IF NOT "%%~C" == !extension! (
-       SET assetType=!extension!
-	    )
-
-	    IF "%%~A" == "colorMap" (
-       SET colorMap="%%~C"
-	    )
-	   )
-   )
-  )
-
-  CALL :compileTexture %%~B !assetType! !colorMap! < nul
+  CALL :findTexture %%~B < nul
+ )
+ IF "%%~A" == "material" (
+  CALL :findTexture %%~B < nul
  )
 )
 
@@ -57,6 +40,32 @@ CALL "%zip_dir%\7z" -tzip a %map_name%.iwd "%create_dir%%map_name%\*"
 rmdir /S /Q "%create_dir%%map_name%"
 
 GOTO :end 
+:findTexture
+SET assetName=%~1
+SET assetType=0
+SET colorMap=0
+
+IF EXIST "%git_source_data%\%assetName%.gdt" (
+    FOR /F tokens^=2-4delims^=^<^"^= %%A IN (%git_source_data%\%assetName%.gdt) DO (
+     IF NOT "%%~A" == "" (
+    	   IF NOT "%%~C" == "" (
+          SET value=%%~C
+    	    SET extension="!value:.gdf=!"
+    
+    	    IF NOT "%%~C" == !extension! (
+           SET assetType=!extension!
+    	    )
+    
+    	    IF "%%~A" == "colorMap" (
+           SET colorMap="%%~C"
+    	    )
+    	   )
+     )
+    )
+    
+    CALL :compileTexture !assetName! !assetType! !colorMap! < nul
+)
+GOTO :end
 
 :compileTexture
 SET assetName=%~1
