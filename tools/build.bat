@@ -36,11 +36,10 @@ IF NOT EXIST %git_zone_src_dir%\%map_name%.csv (
  echo ignore,common_mp>> %git_zone_src_dir%\%map_name%_load.csv
  echo ignore,localized_code_post_gfx_mp>> %git_zone_src_dir%\%map_name%_load.csv
  echo ignore,localized_common_mp>> %git_zone_src_dir%\%map_name%_load.csv
- echo ui_map,maps/%map_name%>> %git_zone_src_dir%\%map_name%_load.csv
+ echo ui_map,maps/%map_name%.csv>> %git_zone_src_dir%\%map_name%_load.csv
 )
 
 robocopy "%git_map_dir%" "%map_dir%" %map_name%.map
-robocopy "%git_bsp_dir%" "%bsp_dir%" %map_name%.d3dbsp %map_name%.gsc
 robocopy "%git_zone_src_dir%" "%zone_src_dir%" %map_name%.csv %map_name%_load.csv
 
 IF EXIST "%git_map_dir%\prefabs" (
@@ -50,18 +49,7 @@ IF EXIST "%git_map_dir%\prefabs" (
 CALL "%tools_dir%\cod4compiletools_compilebsp.bat" "%bsp_dir%\" "%map_dir%\" "%game_dir%\" %map_name% - -extra 1 1 1
 CALL "%tools_dir%\cod4compiletools_reflections.bat" "%game_dir%\" %map_name% 1
 
-IF EXIST "%bsp_dir%\%map_name%.d3dbsp" (
- del "%git_bsp_dir%\%map_name%.d3dbsp"
- copy "%bsp_dir%\%map_name%.d3dbsp" "%git_bsp_dir%\%map_name%.d3dbsp"
- del "%bsp_dir%\%map_name%.d3dbsp"
-)
-
 cd "%~dp0"
 CALL "%~dp0ff.bat"
 cd "%~dp0"
 CALL "%~dp0iwd.bat"
-
-IF EXIST "%map_dir%\%map_name%.map" del "%map_dir%\%map_name%.map"
-IF EXIST "%bsp_dir%\%map_name%.gsc" del "%bsp_dir%\%map_name%.gsc"
-
-pause

@@ -19,7 +19,7 @@ robocopy "%git_zone_src_dir%" "%zone_src_dir%" %map_name%.csv %map_name%_load.cs
 robocopy "%git_raw_dir%" "%raw_dir%" /E
 
 cd "%bin_dir%"
-"%bin_dir%\linker_pc.exe" %map_name% %map_name%_load
+linker_pc.exe -language english %map_name% %map_name%_load
 
 IF EXIST "%zone_dir%\%map_name%.ff" (
  del "%output_dir%\%map_name%.ff"
@@ -31,3 +31,5 @@ IF EXIST "%zone_dir%\%map_name%_load.ff" (
  robocopy "%zone_dir%" "%output_dir%" %map_name%_load.ff
  del "%zone_dir%\%map_name%_load.ff"
 )
+
+pause
