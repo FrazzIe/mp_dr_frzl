@@ -888,12 +888,15 @@ miscData(id) {
 						thread oldBlacklistListener();
 						break;
 					case 13:
-						for (i = 0; i < 2; i++) {
-							player.health += 160;
-							player finishPlayerDamage(player, player, 160, 0, "MOD_FALLING", "jump_mp", player.origin, AnglesToForward((0, 90, 0)), "head", 0);
-						} //force player in the activator area
-						wait(0.1);
-						activatorDoor(false);
+						thread activatorDoor(false);
+						spawn = getEnt("misc_13_spawn", "targetname");
+						ent = spawn ("script_model", (0, 0, 0));
+						ent.origin = player.origin;
+						ent.angles = player.angles;
+						player linkTo(ent);
+						ent moveTo(spawn.origin, 0.3);
+						wait(0.35);
+						player unlink();
 						break;
 					default:
 						break;
