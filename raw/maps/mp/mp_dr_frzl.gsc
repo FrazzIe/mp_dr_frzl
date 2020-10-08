@@ -18,6 +18,25 @@ main() {
 	self.messages = "Created by Frazzle.;This map can be found on GitHub @Frazzle;Discord: frazzle#6627;Report any bugs found to the GitHub repository";
 	self.secretReward = 1000; //Amount of XP to be awarded when secret is finished (Only 1st person gets the max reward)
 	self.secretRewardOffset = 250; //Amount of XP to be subtracted from the secret reward on completion
+	
+	//Music info (name, duration)
+	self.songs = [];
+	self.songs[0] = [];
+	self.songs[0][0] = "Miracle (feat. Daimy Lotus)";
+	self.songs[0][1] = 191;
+	self.songs[1] = [];
+	self.songs[1][0] = "Hope";
+	self.songs[1][1] = 288;
+	self.songs[2] = [];
+	self.songs[2][0] = "Fearless Pt. II";
+	self.songs[2][1] = 194;
+	self.songs[3] = [];
+	self.songs[3][0] = "Happi (feat. bby ivy)";
+	self.songs[3][1] = 163;
+	self.songs[4] = [];
+	self.songs[4][0] = "Turn It Up";
+	self.songs[4][1] = 185;
+	//Music Info End
 
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp"); //sniper room
@@ -997,8 +1016,11 @@ miscData(id) {
 						case "3":
 						case "4":
 						case "5":
+							songData = self.songs[int(response) - 1];
 							ambientPlay("frzl_music_" + response);
-							miscTrigger delete();
+							iPrintLn("^1>> ^7Now Playing: " + songData[0]);
+							wait(songData[1]);
+							iPrintLn("^1>> ^7You can now request a new song");
 							break;
 					};
 				break;
