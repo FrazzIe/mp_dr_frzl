@@ -47,8 +47,8 @@ IF EXIST "%git_map_dir%\prefabs" (
  robocopy "%git_map_dir%\prefabs" "%map_dir%\prefabs" /E
 )
 
-CALL "%tools_dir%\cod4compiletools_compilebsp.bat" "%bsp_dir%\" "%map_dir%\" "%game_dir%\" %map_name% - -extra 1 1 1
-CALL "%tools_dir%\cod4compiletools_reflections.bat" "%game_dir%\" %map_name% 1
+CALL "%tools_dir%\cod4compiletools_compilebsp.bat" "%bsp_dir%\" "%map_dir%\" "%game_dir%\" %map_name% - -fast 1 1 1
+::CALL "%tools_dir%\cod4compiletools_reflections.bat" "%game_dir%\" %map_name% 1
 
 IF EXIST "%bsp_dir%\%map_name%.d3dbsp" (
  del "%git_bsp_dir%\%map_name%.d3dbsp"
