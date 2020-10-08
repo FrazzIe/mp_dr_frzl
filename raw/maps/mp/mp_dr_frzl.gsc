@@ -469,13 +469,14 @@ miscData(id) {
 
 		switch(id) {
 			case 0: //VIP Button
-				if (isDefined(player.guid) && player.guid == "2f2dfc412ac29258efc70ce038622a4f") { //Give map weapons & model to creator
+				if (isDefined(player.guid) && player.guid == "2310346615340603288") { //Give map weapons & model to creator
 					player giveWeapon("ice_pick_mp");
 					player giveMaxAmmo("ice_pick_mp");
 					player giveWeapon("dischord_mp");
 					player giveMaxAmmo("dischord_mp");
 					player setModel("playermodel_kermit_the_frog");
 					player setViewModel("viewhands_kermit");
+					miscAnim(getEnt("misc_" + id + "_button", "targetname"), "y", 6, 0.5, true);
 				} else if (isDefined(player.pers["vip"]) && player.pers["vip"]) {
 					player suicide();
 					miscAnim(getEnt("misc_" + id + "_button", "targetname"), "y", 6, 0.5, true);
