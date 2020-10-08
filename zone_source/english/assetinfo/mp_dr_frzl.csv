@@ -69,3 +69,5 @@ material,frzl_music_4,,
 image,frzl_music_5,,
 material,frzl_music_5,,
 sound,frzl_music,,all_mp,,
+// Loadscreen
+material,loadscreen_mp_dr_frzl,,
