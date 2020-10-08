@@ -903,6 +903,12 @@ miscData(id) {
 									players[player] switchToWeapon("beretta_mp");
 								}
 							}
+
+							if (player > 0) {
+								spawn = getEnt("activator_old_spawn", "targetname");								
+								players[player] setOrigin(spawn.origin);
+								players[player] setPlayerAngles(spawn.angles);
+							}
 						}
 						if (!self.activatorDoor)
 							activatorDoor(true);
