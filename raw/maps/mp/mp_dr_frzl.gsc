@@ -35,7 +35,7 @@ main() {
 	level.roomOccupied = false;
 	self.activatedTraps = [];
 	self.trapCount = 8;
-	self.miscCount = 35;
+	self.miscCount = 39;
 	self.activatorDoor = false;
 	self.messages = "Created by Frazzle.;This map can be found on GitHub @Frazzle;Discord: frazzle#6627;Report any bugs found to the GitHub repository";
 	self.secretReward = 1000; //Amount of XP to be awarded when secret is finished (Only 1st person gets the max reward)
@@ -1046,6 +1046,14 @@ miscData(id) {
 							iPrintLn("^1>> ^7You can now request a new song");
 							break;
 					};
+				break;
+			case 35:
+			case 36:
+			case 37:
+			case 38: //Secret teleports
+				spawn = getEnt("misc_" + id + "_spawn", "targetname");
+				player setOrigin(spawn.origin);
+				player setPlayerAngles(spawn.angles);
 				break;
 			default:
 				break;
