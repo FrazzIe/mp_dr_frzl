@@ -242,9 +242,7 @@ startPlatform() {
 	level waittill("round_started");
 	startPlatform = getEnt("start_platform", "targetname");
 
-	wait(5);
-
-	iPrintLnBold("^1MEEP");
+	wait(10);
 
 	while(true) {
 		startPlatform moveX(250, 2, 1, 1);
