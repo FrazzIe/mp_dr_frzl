@@ -9,6 +9,7 @@ set output_dir=%~dp0..\output
 set bin_dir=%game_dir%\bin
 set image_dir=%game_dir%\raw\images
 set material_dir=%game_dir%\raw\materials
+set material_property_dir=%game_dir%\raw\material_properties
 set source_data=%game_dir%\source_data
 set texture_src=%game_dir%\texture_src
 set git_zone_src=%~dp0..\zone_source\english\assetinfo
@@ -92,10 +93,12 @@ IF NOT assetName == 0 (
      IF EXIST "%material_dir%\%assetName%" (
       robocopy "%material_dir%" "%git_raw_dir%\materials" %assetName%
      )
+     IF EXIST "%material_property_dir%\%assetName%" (
+      robocopy "%material_property_dir%" "%git_raw_dir%\material_properties" %assetName%
+     )
     )
   )
  )
 )
 
 :end
-pause
