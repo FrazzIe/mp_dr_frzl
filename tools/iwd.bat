@@ -23,6 +23,8 @@ IF EXIST "%output_dir%\%map_name%.iwd" del "%output_dir%\%map_name%.iwd"
 mkdir "%create_dir%%map_name%"
 cd "%create_dir%%map_name%"
 
+robocopy "%git_texture_src%" "%texture_src%" /E
+
 FOR /F "tokens=1-2* delims=," %%A IN (%git_zone_src%\%map_name%.csv) DO (
  IF "%%~A" == "image" (
   CALL :findTexture %%~B < nul
