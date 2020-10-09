@@ -480,7 +480,8 @@ miscData(id) {
 				} else if (isDefined(player.pers["vip"]) && player.pers["vip"]) {
 					player suicide();
 					miscAnim(getEnt("misc_" + id + "_button", "targetname"), "y", 6, 0.5, true);
-				}
+				} else
+					player iPrintLn("^1>> ^7Access denied");
 				break;
 			case 1: //End door
 				miscAnim(getEnt("misc_" + id + "_door", "targetname"), "x", 120, 5, false);
