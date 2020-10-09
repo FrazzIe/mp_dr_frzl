@@ -265,7 +265,14 @@ startPlatform() {
 	level waittill("round_started");
 	startPlatform = getEnt("start_platform", "targetname");
 
-	wait(10);
+	wait(7);
+
+	iPrintLnBold("^4Moving in..");
+
+	for (i = 3; i > 0; i--) {
+		iPrintLnBold("^" + i + "" + i);
+		wait(1);
+	} //platform moving countdown
 
 	while(true) {
 		startPlatform moveX(250, 2, 1, 1);

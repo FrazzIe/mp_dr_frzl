@@ -43264,3 +43264,17 @@ iwmap 4
   }
  }
 }
+// entity 957
+{
+"hintstring" "^3Hint^7: Mind the ladders"
+"classname" "trigger_use_touch"
+// brush 0
+{
+ ( 306 304 0 ) ( 304 304 0 ) ( 304 -304 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 330.5 -304 128 ) ( 330.5 304 128 ) ( 332.5 304 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 304 -304 3 ) ( 306 -304 3 ) ( 306 -304 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 336 -304 2.5 ) ( 336 304 2.5 ) ( 336 304 -0.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 306 304 3 ) ( 304 304 3 ) ( 304 304 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 304 304 3 ) ( 304 -304 3 ) ( 304 -304 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
