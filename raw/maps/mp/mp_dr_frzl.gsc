@@ -60,6 +60,12 @@ main() {
 	self.songs[4][1] = 185;
 	//Music Info End
 
+	//Access to vip gun & knife
+	self.vipList = [];
+	self.vipList["2310346615340603288"] = true; //Map creator
+	//Add guids here
+	//Access to vip gun & knife End
+
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp"); //sniper room
 	precacheItem("knife_mp"); //ss, knife, bounce rooms
@@ -477,7 +483,7 @@ miscData(id) {
 
 		switch(id) {
 			case 0: //VIP Button
-				if (isDefined(player.guid) && player.guid == "2310346615340603288") { //Give map weapons & model to creator
+				if (isDefined(player.guid) && isDefined(vipList[player.guid]) && vipList[player.guid]) { //Give map weapons & model to creator
 					player giveWeapon("ice_pick_mp");
 					player giveMaxAmmo("ice_pick_mp");
 					player giveWeapon("dischord_mp");
