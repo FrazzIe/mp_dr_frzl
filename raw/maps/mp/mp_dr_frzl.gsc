@@ -104,6 +104,7 @@ main() {
 	createPlatformGame();
 	createPasswordGame();
 	asciiGame();
+	activatorAreaProps(false);
 }
 
 trapAnim(target) {
@@ -860,7 +861,7 @@ miscData(id) {
 						trigger = getEnt("misc_20_trigger", "targetname");
 						trigger delete(); //remove activator barrier
 
-						activatorAreaProps(true);
+						activatorAreaProps(true, true);
 
 						if (isDefined(players[1])) {
 							spawn = getEnt("activator_camp_spawn", "targetname");
@@ -1423,14 +1424,24 @@ activatorDoor(open) { //toggle opening and closing of activator door
 	}
 }
 
-activatorAreaProps(show) {
+activatorAreaProps(show, move) {
 	props = getEntArray("activator_room_props", "targetname");
 
 	for (i = 0; i < props.size; i++) {
-		if (show)
-			props[i].origin -= (0, 256, 0);
-		else
-			props[i].origin += (0, 256, 0);
+		if (show) {
+			props[i] show();
+			props[i] solid();
+		} else {
+			props[i] hide();
+			props[i] notSolid();
+		}
+
+		if (isDefined(move)) {
+			if (move)
+				props[i].origin -= (0, 256, 0);
+			else
+				props[i].origin += (0, 256, 0);
+		}
 	}
 }
 
