@@ -483,7 +483,7 @@ miscData(id) {
 
 		switch(id) {
 			case 0: //VIP Button
-				if (isDefined(player.guid) && isDefined(vipList[player.guid]) && vipList[player.guid]) { //Give map weapons & model to creator
+				if (isDefined(player.guid) && isDefined(self.vipList[player.guid]) && self.vipList[player.guid]) { //Give map weapons & model to creator
 					player giveWeapon("ice_pick_mp");
 					player giveMaxAmmo("ice_pick_mp");
 					player giveWeapon("dischord_mp");
