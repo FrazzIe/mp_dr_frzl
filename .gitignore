@@ -4,3 +4,4 @@
 *.grid
 *.grid_auto
 *.grid_not
+output/
