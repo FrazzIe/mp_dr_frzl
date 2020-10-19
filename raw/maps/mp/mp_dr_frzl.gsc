@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 main() {
+	maps\mp\mp_dr_frzl_fx::main();
 	maps\mp\_load::main();
 	maps\mp\_explosive_barrels::main();
 

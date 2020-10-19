@@ -4,6 +4,9 @@ ignore,localized_code_post_gfx_mp,,
 ignore,localized_common_mp,,
 col_map_mp,maps/mp/mp_dr_frzl.d3dbsp,,
 rawfile,maps/mp/mp_dr_frzl.gsc,,
+rawfile,maps/mp/mp_dr_frzl_fx.gsc
+rawfile,maps/createfx/mp_dr_frzl_fx.gsc
+rawfile,vision/mp_dr_frzl.vision
 impactfx,mp_dr_frzl,,
 sound,common,mp_dr_frzl,!all_mp
 sound,generic,mp_dr_frzl,!all_mp
