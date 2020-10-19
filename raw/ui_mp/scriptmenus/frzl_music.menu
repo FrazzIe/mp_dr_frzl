@@ -69,7 +69,7 @@
 		
 		// ------------------ TREE TITLE ------------------
 		
-		CHOICE_MENU_TITLE( "@FRZL_MUSIC_TITLE" )
+		CHOICE_MENU_TITLE( "Choose Music" )
 
 		
 		// ------------------ buttons ---------------------
@@ -96,10 +96,10 @@
 		
 		//CHOICE_BUTTON_FOCUS_VIS_EX( itemIndex, textArg, actionArg, onFocusArg, leaveFocusArg, visArg, extraArgs )
 		//Menu buttons
-		CHOICE_BUTTON_FOCUS_VIS_EX( 1, "@FRZL_MUSIC_1", scriptMenuResponse "1"; close self;, setLocalVarInt frzl_highlight 1;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_1" )
-		CHOICE_BUTTON_FOCUS_VIS_EX( 2, "@FRZL_MUSIC_2", scriptMenuResponse "2"; close self;, setLocalVarInt frzl_highlight 2;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_2" )
-		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "@FRZL_MUSIC_3", scriptMenuResponse "3"; close self;, setLocalVarInt frzl_highlight 3;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_3" )
-		CHOICE_BUTTON_FOCUS_VIS_EX( 4, "@FRZL_MUSIC_4", scriptMenuResponse "4"; close self;, setLocalVarInt frzl_highlight 4;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_4" )
-		CHOICE_BUTTON_FOCUS_VIS_EX( 5, "@FRZL_MUSIC_5", scriptMenuResponse "5"; close self;, setLocalVarInt frzl_highlight 5;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_5" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 1, "Miracle (feat. Daimy Lotus)", scriptMenuResponse "1"; close self;, setLocalVarInt frzl_highlight 1;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_1" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 2, "Hope", scriptMenuResponse "2"; close self;, setLocalVarInt frzl_highlight 2;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_2" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 3, "Fearless Pt. II", scriptMenuResponse "3"; close self;, setLocalVarInt frzl_highlight 3;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_3" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 4, "Happi (feat. bby ivy)", scriptMenuResponse "4"; close self;, setLocalVarInt frzl_highlight 4;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_4" )
+		CHOICE_BUTTON_FOCUS_VIS_EX( 5, "Turn It Up", scriptMenuResponse "5"; close self;, setLocalVarInt frzl_highlight 5;, setLocalVarInt frzl_highlight 0;, 1, name "frzl_music_5" )
 	}
 }

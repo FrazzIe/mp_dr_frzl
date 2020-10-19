@@ -58,7 +58,6 @@ weapon,mp/dischord_mp,,
 xmodel,playermodel_kermit_the_frog,,
 xmodel,viewhands_kermit,,
 // Music menu
-localize,frzl_music,,
 menufile,ui_mp/frzl_music_info.inc,,
 menufile,ui_mp/scriptmenus/frzl_music.menu,,
 material,frzl_music_1,,
